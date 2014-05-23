@@ -56,9 +56,27 @@
     
         <div class='col-md-4'>
             <div id="mapinfo">
-                <h4>Search crime in Chicago</h4>
-                <p>Draw on the map or <a href='/help.html'>use the filters below</a>.</p>
-                <hr />
+                <div class="panel-group" id="accordion">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-intro">
+                        <i class='fa fa-info-circle'></i>
+                          Search crime in Chicago
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse-intro" class="panel-collapse collapse in">
+                      <div class="panel-body">
+                        <p><strong>CrimeAround.us</strong> is a tool for browsing crime reports from the Chicago Police Department. Reports are available for the City of Chicago from 2001 to <a href='#'>one week ago</a>.</p>
+
+                        <p>Draw on the map or use the filters below. Read the <a href='/help.html'>help page</a> for more.</p>
+
+                        <p class='pull-right'><a class='btn btn-primary' href='#' id='dismiss-intro'>OK, thanks!</a></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <div id="filters">
                     <form role="form">
@@ -228,5 +246,11 @@
         <script src="/js/map.js?2"></script>
         <script src="/js/jquery.ba-hashchange.js"></script>
         <script src="/js/analytics_lib.js"></script>
+
+        <script>
+            $('#dismiss-intro').click(function(){
+              $('#collapse-intro').collapse('hide');
+            });
+        </script>
     </body>
 </html>
