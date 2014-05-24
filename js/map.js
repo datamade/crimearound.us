@@ -292,7 +292,7 @@ $(window).resize(function () {
     function add_resp_to_map(query, resp){
         crimes.clearLayers();
         var marker_opts = {
-            radius: 8,
+            radius: 5,
             weight: 2,
             opacity: 1,
             fillOpacity: 0.6
