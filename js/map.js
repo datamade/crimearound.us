@@ -459,6 +459,11 @@ $(window).resize(function () {
         var crime_template = new EJS({url: 'js/views/crimeTemplate.ejs'});
         var props = feature.properties;
         var pop_content = crime_template.render(props);
+
+        var hoverText = feature.properties['primary_type'] + " - " + feature.properties['description'] + "\
+                        <br />\
+                        " + moment(feature.properties['orig_date']).utc().format('dddd MMM D, YYYY h:mma');
+        layer.bindLabel(hoverText);
         layer.bindPopup(pop_content, {
             closeButton: true,
             minWidth: 320

@@ -1,7 +1,7 @@
 <p><%= moment(orig_date).utc().format('dddd MMM D, YYYY h:mma') %></p>
 <h3><%= primary_type %><br /><span class="light"><%= typeof description !== 'undefined' ? description : '' %></span></h3>
 <p>
-<strong><%= block.replace("XX", "00").replace("0X", "00") %></strong> <br />
+<strong><%= block %></strong> <br />
 <%= typeof location_description !== 'undefined' ? location_description : '' %>
 </p>
 
