@@ -179,12 +179,12 @@
                         <div class='form-group col-sm-12'>
                             <div class='pull-left'>
                                 <a href='#' id="submit-query" class="btn btn-primary"><i class='fa fa-search'></i> Search</a>
-                                <a href='#' id="reset" class="btn btn-danger"><i class='fa fa-refresh'></i></a>
-                                <a href='#' id='remember' class='btn btn-default'><i class="fa fa-star-o"></i></a>
+                                <a href='#' id="reset" class="btn btn-info" data-toggle="tooltip" title="Clear all filters"><i class='fa fa-refresh'></i></a>
+                                <a href='#' id='remember' class='btn btn-default' data-toggle="tooltip" title="Save this search"><i class="fa fa-star-o"></i></a>
                             </div>
                             <div class='pull-right'>
-                                <a href='#' id='report' class='btn btn-default'><i class="fa fa-table"></i></a>
-                                <a href='#' id='print' class='btn btn-default'><i class="fa fa-print"></i></a>
+                                <a href='#' id='report' class='btn btn-default' data-toggle="tooltip" title="Download crime data"><i class="fa fa-table"></i></a>
+                                <a href='#' id='print' class='btn btn-default' data-toggle="tooltip" title="Generate a printable PDF"><i class="fa fa-print"></i></a>
                             </div>
                         </div>
                     </form>
@@ -254,6 +254,9 @@
             $('#dismiss-intro').click(function(){
               $('#collapse-intro').collapse('hide');
             });
+        </script>
+        <script>
+            $("[data-toggle=tooltip").tooltip();
         </script>
     </body>
 </html>
