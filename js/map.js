@@ -112,6 +112,7 @@ $(window).resize(function () {
     $.getJSON(endpoint + '/api/group-to-location/', function(resp){
         var opts = '';
         $.each(resp, function(key, locations){
+            // Need to show common types on top. Maybe handle this in API endpoint...
             if (key == 'cta' || key == 'cha'){
                 opts += "<optgroup label='" + key.toUpperCase() + "'>";
             } else {
@@ -248,7 +249,7 @@ $(window).resize(function () {
                 locations.push(location);
             });
             if(locations.length > 0){
-                query['locations'] = locations.join(',');
+                query['location_description__in'] = locations.join(',');
             }
         }
 
