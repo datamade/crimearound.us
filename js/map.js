@@ -109,13 +109,22 @@ $(window).resize(function () {
         }
     }
 
-  //$.getJSON(endpoint + '/api/group-to-location/', function(resp){
-  //    var opts = '';
-  //    $.each(resp, function(key, locations){
-
-  //        opts += "<optgroup label='" + key +
-  //    })
-  //})
+    $.getJSON(endpoint + '/api/group-to-location/', function(resp){
+        var opts = '';
+        $.each(resp, function(key, locations){
+            if (key == 'cta' || key == 'cha'){
+                opts += "<optgroup label='" + key.toUpperCase() + "'>";
+            } else {
+                opts += "<optgroup label='" + toTitleCase(key).split('_').join(' ') + "'>";
+            }
+            $.each(locations, function(i, location){
+                opts += "<option value='" + location + "'>" + location + "</option>";
+            });
+            opts += "</optgroup>"
+        });
+        $('#crime-location').append(opts);
+        $('#crime-location').trigger('chosen:updated');
+    })
 
     $.getJSON('/js/beats.json', function(resp){
         var beat_select = "<select id='police-beat' data-placeholder='All police beats' class='chosen-select form-control' multiple>";
