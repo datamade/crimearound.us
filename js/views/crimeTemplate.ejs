@@ -1,7 +1,21 @@
+<h1 class=<%= crime_type %>><%= primary_type %> - <%= description %></h1>
+Arrest? 
+<% if(arrest == 'true' || arrest == true){ %> 
+    Yes
+<% } else { %> 
+    No
+<% } %> 
+|
+Domestic?
+<% if(domestic == 'true' || domestic == true){ %> 
+    Yes
+<% } else { %> 
+    No
+<% } %>
+<hr />
 <p><%= moment(orig_date).format('dddd MMM D, YYYY h:mma') %></p>
-<h3><%= primary_type %><br /><span class="light"><%= typeof description !== 'undefined' ? description : '' %></span></h3>
 <p>
-<strong><%= block %></strong> <br />
+<%= block %><br />
 <%= typeof location_description !== 'undefined' ? location_description : '' %>
 </p>
 
@@ -10,28 +24,14 @@
         <tr>
             <th>Ward</th>
             <th>Beat</th>
-            <th>Arrest?</th>
-            <th>Domestic?</th>
+            <th>Community</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td><%= typeof ward !== 'undefined' ? ward : '' %></td>
             <td><%= typeof beat !== 'undefined' ? beat : '' %></td>
-            <td>
-                <% if(arrest == 'true' || arrest == true){ %> 
-                    Yes
-                <% } else { %> 
-                    No
-                <% } %> 
-            </td>
-            <td>
-                <% if(domestic == 'true' || domestic == true){ %> 
-                    Yes
-                <% } else { %> 
-                    No
-                <% } %> 
-            </td>
+            <td><%= community_area %></td>
         </tr>
     </tbody>
 </table>
