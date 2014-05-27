@@ -461,8 +461,8 @@ $(window).resize(function () {
         var pop_content = crime_template.render(props);
 
         var hoverText = feature.properties['primary_type'] + " - " + feature.properties['description'] + "\
-                        <br />\
-                        " + moment(feature.properties['orig_date']).utc().format('dddd MMM D, YYYY h:mma');
+                        <br />" + feature.properties['block'] + "\
+                        <br />" + moment(feature.properties['orig_date']).utc().format('MMM D, YYYY h:mma');
         layer.bindLabel(hoverText);
         layer.bindPopup(pop_content, {
             closeButton: true,
