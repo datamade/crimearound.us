@@ -456,7 +456,7 @@ $(window).resize(function () {
     }
 
     function bind_popup(feature, layer){
-        var crime_template = new EJS({url: 'js/views/crimeTemplate.ejs'});
+        var crime_template = new EJS({url: 'js/views/crimeTemplate.ejs?v=2'});
         var props = feature.properties;
         var pop_content = crime_template.render(props);
 
