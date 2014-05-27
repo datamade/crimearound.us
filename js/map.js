@@ -61,7 +61,7 @@ $(window).resize(function () {
     start_date = moment().subtract('d', 9);
     end_date = moment().subtract('d', 8);
     $('#date_range').daterangepicker(
-      { 
+      {
         format: 'MM/DD/YYYY',
         showDropdowns: true,
         startDate: start_date,
@@ -75,7 +75,7 @@ $(window).resize(function () {
       }
     )
     update_date_range();
-    
+
     $('#time-slider').slider({
         orientation: "horizontal",
         range: true,
@@ -108,6 +108,14 @@ $(window).resize(function () {
             $('.saved-search').on('click', load_remembered_search);
         }
     }
+
+  //$.getJSON(endpoint + '/api/group-to-location/', function(resp){
+  //    var opts = '';
+  //    $.each(resp, function(key, locations){
+
+  //        opts += "<optgroup label='" + key +
+  //    })
+  //})
 
     $.getJSON('/js/beats.json', function(resp){
         var beat_select = "<select id='police-beat' data-placeholder='All police beats' class='chosen-select form-control' multiple>";
@@ -158,7 +166,7 @@ $(window).resize(function () {
             ).fail();
         } else {
             map.fitBounds([[41.644286009999995, -87.94010087999999], [42.023134979999995, -87.52366115999999]]);
-                
+
             var crime_types = "THEFT,BATTERY,CRIMINAL DAMAGE,NARCOTICS";
             $.each(crime_types.split(","), function(i,e){
                 $("#crime-type option[value='" + e + "']").prop("selected", true);
@@ -168,6 +176,12 @@ $(window).resize(function () {
             $('#submit-query').trigger('click');
         }
     })
+
+    function toTitleCase(str){
+        return str.replace(/\w\S*/g, function(txt){
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
 
     function convertTime(time){
         var meridian = time < 12 ? 'am' : 'pm';
