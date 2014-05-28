@@ -42,6 +42,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="/">CrimeAround.us</a>
+          <span class='navbar-text'>Search crime reports in Chicago</span>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav pull-right">
@@ -61,17 +62,17 @@
 
         <div class='col-md-4'>
             <div id="mapinfo">
-                <div class="panel-group" id="accordion">
+                <div class="panel-group col-sm-12" id="accordion">
                   <div class="panel panel-default">
                     <div class="panel-heading">
                       <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse-intro">
                         <i class='fa fa-info-circle'></i>
-                          Search crime in Chicago
+                          What is CrimeAround.us?
                         </a>
                       </h4>
                     </div>
-                    <div id="collapse-intro" class="panel-collapse collapse in">
+                    <div id="collapse-intro" class="panel-collapse collapse">
                       <div class="panel-body">
                         <p><strong>CrimeAround.us</strong> is a tool for browsing crime reports from the Chicago Police Department. Reports are available for the City of Chicago from 2001 to <a href='#'>one week ago</a>.</p>
 
@@ -86,17 +87,8 @@
                 <div id="filters">
                     <form role="form">
                         <div class="form-group col-sm-12">
-                            <label for="start">Date range</label>
+                            <label for="start">Date reported</label>
                             <input id="date_range" class="date-filter start form-control" type="text"/>
-                        </div>
-                        <div class="form-group col-sm-10">
-                            <label for="time-slider">Hour of day:</label>
-                            <span>
-                                <span id="time-start" data-value="0">12am</span>
-                                —
-                                <span id="time-end" data-value="23">11pm</span>
-                            </span>
-                            <div id="time-slider"></div>
                         </div>
 
                         <div class="form-group col-sm-12">
@@ -143,14 +135,42 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-sm-12">
-                            <label for='crime-location'>Location description</label>
-                            <select id="crime-location" data-placeholder="All location descriptions" class="chosen-select form-control" multiple></select>
-                        </div>
+                        <div class="panel-group col-sm-12" id="accordion-advanced">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion-advanced" href="#collapse-advanced">
+                                <i class='fa fa-plus-circle'></i>
+                                  More filters &hellip;
+                                </a>
+                              </h4>
+                            </div>
+                            <div id="collapse-advanced" class="panel-collapse collapse in">
+                              <div class="panel-body">
+                               
+                                <div class="form-group col-sm-12">
+                                    <label for='crime-location'>Location description</label>
+                                    <select id="crime-location" data-placeholder="All location descriptions" class="chosen-select form-control" multiple></select>
+                                </div>
 
-                        <div class="form-group col-sm-12">
-                            <label for='police-beat'>Police beat</label>
-                            <div id="beat-filters"></div>
+                                <div class="form-group col-sm-10">
+                                    <label for="time-slider">Hour of day:</label>
+                                    <span>
+                                        <span id="time-start" data-value="0">12am</span>
+                                        —
+                                        <span id="time-end" data-value="23">11pm</span>
+                                    </span>
+                                    <div id="time-slider"></div>
+                                </div>
+
+                                <div class="form-group col-sm-12">
+                                    <label for='police-beat'>Police beat</label>
+                                    <div id="beat-filters"></div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
                         </div>
 
                         <div class='form-group col-sm-12'>
@@ -228,8 +248,21 @@
         <script src="/js/analytics_lib.js"></script>
 
         <script>
+            if ($.cookie("show-intro") != "read") {
+              $('#collapse-intro').collapse('show');
+              $.cookie("show-intro", "read", { expires: 7 });
+            }
+
             $('#dismiss-intro').click(function(){
               $('#collapse-intro').collapse('hide');
+            });
+
+            $('#collapse-advanced').on('hide.bs.collapse', function () {
+              $("#accordion-advanced i").attr('class', 'fa fa-plus-circle');
+            });
+
+            $('#collapse-advanced').on('show.bs.collapse', function () {
+              $("#accordion-advanced i").attr('class', 'fa fa-minus-circle');
             });
         </script>
         <script>

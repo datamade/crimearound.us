@@ -1,9 +1,13 @@
-<h1>Crime reports</h1>
+<h1><strong>Crime reports</strong><br />
+  <%= start_date %> - <%= end_date %>
+</h1>
 
-<h5><strong class="violent"><%= typeof violent !== 'undefined' ? violent : 0 %></strong> Violent</h5>
-
-<h5><strong class="property"><%= typeof property !== 'undefined' ? property : 0 %></strong> Property</h5>
-
-<h5><strong class="quality"><%= typeof quality !== 'undefined' ? quality : 0 %></strong> Quality of life</h5>
-
-<h5><strong class='other'><%= typeof other !== 'undefined' ? other : 0 %></strong> Other</h5>
+<p>
+  <strong class="violent"><%= typeof totals_by_type.violent !== 'undefined' ? totals_by_type.violent : 0 %></strong> Violent
+  <br />
+  <strong class="property"><%= typeof totals_by_type.property !== 'undefined' ? totals_by_type.property : 0 %></strong> Property
+  <br />
+  <strong class="quality"><%= typeof totals_by_type.quality !== 'undefined' ? totals_by_type.quality : 0 %></strong> Quality of life
+  <br />
+  <strong class='other'><%= typeof totals_by_type.other !== 'undefined' ? totals_by_type.other : 0 %></strong> Other
+</p>

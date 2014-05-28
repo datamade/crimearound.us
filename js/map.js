@@ -32,7 +32,9 @@ $(window).resize(function () {
     meta.update = function(meta_data){
         if(typeof meta_data !== 'undefined'){
             var tpl = new EJS({url: 'js/views/metaTemplate.ejs?2'});
-            $(this._div).html(tpl.render(meta_data.totals_by_type));
+            meta_data['start_date'] = start_date.format('M/D/YYYY');
+            meta_data['end_date'] = end_date.format('M/D/YYYY');
+            $(this._div).html(tpl.render(meta_data));
         } else {
             $(this._div).empty();
             meta.removeFrom(map);
@@ -62,7 +64,7 @@ $(window).resize(function () {
     end_date = moment().subtract('d', 8);
     $('#date_range').daterangepicker(
       {
-        format: 'MM/DD/YYYY',
+        format: 'M/D/YYYY',
         showDropdowns: true,
         startDate: start_date,
         endDate: end_date,
@@ -168,6 +170,7 @@ $(window).resize(function () {
         $('#report').on('click', get_report);
         $('#remember').on('click', remember_search);
         $('#print').on('click', print);
+        $('#collapse-advanced').collapse('hide');
 
         if(window.location.hash){
             var hash = window.location.hash.slice(1,window.location.hash.length);
@@ -436,7 +439,7 @@ $(window).resize(function () {
     function remember_search(){
         var hash = window.location.hash.slice(1,window.location.hash.length);
         var query = parseParams(hash);
-        query['name'] = moment().format('MMM D, YYYY h:mm:ssa')
+        query['name'] = moment(query['obs_date__ge']).format('M/D/YYYY') + " - " + moment(query['obs_date__le']).format('M/D/YYYY');
         var cookie_val = $.parseJSON($.cookie('crimearound_us'));
         cookie_val.push(query);
         $.cookie('crimearound_us', JSON.stringify(cookie_val));
@@ -526,6 +529,6 @@ $(window).resize(function () {
     }
 
     function update_date_range(){
-        $('#date_range').val(start_date.format('MM/DD/YYYY') + " - " + end_date.format('MM/DD/YYYY'));
+        $('#date_range').val(start_date.format('M/D/YYYY') + " - " + end_date.format('MM/DD/YYYY'));
     }
 })()
