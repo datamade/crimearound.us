@@ -28,16 +28,16 @@ Domestic?
 <table class="table table-bordered">
     <thead>
         <tr>
+            <th>Community</th>
             <th>Ward</th>
             <th>Beat</th>
-            <th>Community</th>
         </tr>
     </thead>
     <tbody>
         <tr>
+            <td><%= community_area %></td>
             <td><%= typeof ward !== 'undefined' ? ward : '' %></td>
             <td><%= typeof beat !== 'undefined' ? beat : '' %></td>
-            <td><%= community_area %></td>
         </tr>
     </tbody>
 </table>
