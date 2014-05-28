@@ -12,8 +12,9 @@ $(window).resize(function () {
     var map;
     var meta = L.control({position: 'bottomright'});
     var meta_data;
-    var start_date
+    var start_date;
     var end_date;
+    var default_view = false;
 
     var endpoint = 'http://api.crimearound.us';
     //var endpoint = 'http://crime-weather.smartchicagoapps.org';
@@ -54,6 +55,7 @@ $(window).resize(function () {
             marker: false
         }
     });
+
     drawControl.setPosition('topright')
     map.addControl(drawControl);
     map.on('draw:created', draw_create);
@@ -183,44 +185,22 @@ $(window).resize(function () {
                 reload_state(query, resp);
             }
         ).fail();
+        default_view = false;
     } else {
-        map.fitBounds([[41.644286009999995, -87.94010087999999], [42.023134979999995, -87.52366115999999]]);
-
+        default_view = true;
+        // set default filters
         var crime_types = "THEFT,BATTERY,CRIMINAL DAMAGE,NARCOTICS";
         $.each(crime_types.split(","), function(i,e){
             $("#crime-type option[value='" + e + "']").prop("selected", true);
         });
         $('#crime-type').trigger('chosen:updated');
-
-        $('#submit-query').trigger('click');
+        submit_search();
     }
 
     function toTitleCase(str){
         return str.replace(/\w\S*/g, function(txt){
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });
-    }
-
-    function convertTime(time){
-        var meridian = time < 12 ? 'am' : 'pm';
-        var hour = time % 12 || 12;
-        return hour + meridian;
-    }
-
-    function parseParams(query){
-        var re = /([^&=]+)=?([^&]*)/g;
-        var decodeRE = /\+/g;  // Regex for replacing addition symbol with a space
-        var decode = function (str) {return decodeURIComponent( str.replace(decodeRE, " ") );};
-        var params = {}, e;
-        while ( e = re.exec(query) ) {
-            var k = decode( e[1] ), v = decode( e[2] );
-            if (k.substring(k.length - 2) === '[]') {
-                k = k.substring(0, k.length - 2);
-                (params[k] || (params[k] = [])).push(v);
-            }
-            else params[k] = v;
-        }
-        return params;
     }
 
     function draw_edit(e){
@@ -296,6 +276,12 @@ $(window).resize(function () {
             } else if (crimes.getLayers().length > 0){
                 map.fitBounds(crimes.getBounds());
             }
+
+            // zoom in for default zoom
+            // console.log("default: " + default_view);
+            // if (default_view)
+            //     map.setZoom(map.getZoom() + 1);
+
         }).fail(function(data){
             console.log(data);
         })
@@ -527,6 +513,29 @@ $(window).resize(function () {
 
     function get_results(query){
         return $.getJSON(endpoint + '/api/crime/', query)
+    }
+
+    // utility functions
+    function convertTime(time){
+        var meridian = time < 12 ? 'am' : 'pm';
+        var hour = time % 12 || 12;
+        return hour + meridian;
+    }
+
+    function parseParams(query){
+        var re = /([^&=]+)=?([^&]*)/g;
+        var decodeRE = /\+/g;  // Regex for replacing addition symbol with a space
+        var decode = function (str) {return decodeURIComponent( str.replace(decodeRE, " ") );};
+        var params = {}, e;
+        while ( e = re.exec(query) ) {
+            var k = decode( e[1] ), v = decode( e[2] );
+            if (k.substring(k.length - 2) === '[]') {
+                k = k.substring(0, k.length - 2);
+                (params[k] || (params[k] = [])).push(v);
+            }
+            else params[k] = v;
+        }
+        return params;
     }
 
     function update_date_range(){

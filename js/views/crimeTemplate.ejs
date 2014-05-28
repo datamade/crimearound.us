@@ -31,7 +31,7 @@
 </table>
 <p>
 <i class="fa fa-map-marker"></i>
-<strong><%= block %></strong><br />
+<strong><%= block.replace("XX", "00").replace("0X", "00").replace(/^0+/, '') %></strong><br />
 <em><%= typeof location_description !== 'undefined' ? location_description : '' %></em>
 </p>
 
