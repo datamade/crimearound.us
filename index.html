@@ -87,12 +87,18 @@
                 <div id="filters">
                     <form role="form">
                         <div class="form-group col-sm-12">
-                            <label for="start">Date reported</label>
+                            <label for="start">
+                                <i class='fa fa-calendar'></i>
+                                Date reported
+                            </label>
                             <input id="date_range" class="date-filter start form-control" type="text"/>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label for="crime-type">Crime type</label><br />
+                            <label for="crime-type">
+                                <i class='fa fa-navicon'></i>
+                                Crime type
+                            </label><br />
                             <select id="crime-type" data-placeholder="All crime types" class="chosen-select form-control" multiple>
                                 <option value=""></option>
                                 <optgroup label="Violent">
@@ -147,14 +153,12 @@
                             </div>
                             <div id="collapse-advanced" class="panel-collapse collapse in">
                               <div class="panel-body">
-                               
-                                <div class="form-group col-sm-12">
-                                    <label for='crime-location'>Location description</label>
-                                    <select id="crime-location" data-placeholder="All location descriptions" class="chosen-select form-control" multiple></select>
-                                </div>
 
                                 <div class="form-group col-sm-10">
-                                    <label for="time-slider">Hour of day:</label>
+                                    <label for="time-slider">
+                                        <i class='fa fa-clock-o'></i>
+                                        Hour of day:
+                                    </label>
                                     <span>
                                         <span id="time-start" data-value="0">12am</span>
                                         —
@@ -162,9 +166,20 @@
                                     </span>
                                     <div id="time-slider"></div>
                                 </div>
+                               
+                                <div class="form-group col-sm-12">
+                                    <label for='crime-location'>
+                                        <i class='fa fa-map-marker'></i>
+                                        Location description
+                                    </label>
+                                    <select id="crime-location" data-placeholder="All location descriptions" class="chosen-select form-control" multiple></select>
+                                </div>
 
                                 <div class="form-group col-sm-12">
-                                    <label for='police-beat'>Police beat</label>
+                                    <label for='police-beat'>
+                                        <i class='fa fa-map-marker'></i>
+                                        Police beat
+                                    </label>
                                     <div id="beat-filters"></div>
                                 </div>
 
@@ -258,11 +273,11 @@
             });
 
             $('#collapse-advanced').on('hide.bs.collapse', function () {
-              $("#accordion-advanced i").attr('class', 'fa fa-plus-circle');
+              $("#accordion-advanced .panel-title i").attr('class', 'fa fa-plus-circle');
             });
 
             $('#collapse-advanced').on('show.bs.collapse', function () {
-              $("#accordion-advanced i").attr('class', 'fa fa-minus-circle');
+              $("#accordion-advanced .panel-title i").attr('class', 'fa fa-minus-circle');
             });
         </script>
         <script>
