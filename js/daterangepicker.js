@@ -116,7 +116,7 @@
                 this.opens = 'left';
 
             this.buttonClasses = ['btn', 'btn-small'];
-            this.applyClass = 'btn-success';
+            this.applyClass = 'btn-primary';
             this.cancelClass = 'btn-default';
 
             this.format = 'MM/DD/YYYY';

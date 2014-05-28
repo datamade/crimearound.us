@@ -76,6 +76,10 @@ $(window).resize(function () {
     )
     update_date_range();
 
+    $('#date_range').on('apply.daterangepicker', function(ev, picker) {
+      $('#submit-query').trigger('click');
+    });
+
     $('#time-slider').slider({
         orientation: "horizontal",
         range: true,
