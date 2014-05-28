@@ -27,6 +27,8 @@ body {
 
 .panel-group .panel { overflow:visible; }
 
+#drawing-tools-img { margin-right: 10px; margin-top: 5px;}
+
 ul {
     list-style-position: inside !important;
 }
