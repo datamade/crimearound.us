@@ -20,7 +20,7 @@ $(window).resize(function () {
     //var endpoint = 'http://127.0.0.1:5000';
 
     var colors = [
-       '#e41a1c',
+       '#ff7f00',
        '#377eb8',
        '#4daf4a',
        '#984ea3'
