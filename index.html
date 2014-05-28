@@ -154,7 +154,7 @@
                             <div id="collapse-advanced" class="panel-collapse collapse in">
                               <div class="panel-body">
 
-                                <div class="form-group col-sm-10">
+                                <div class="form-group col-sm-11">
                                     <label for="time-slider">
                                         <i class='fa fa-clock-o'></i>
                                         Hour of day:
@@ -210,55 +210,39 @@
 
             </div>
         </div>
-    <div class='col-md-8'>
-        <div id="map"></div>
-    </div>
 
-        <!-- <div id="report-modal" class="reveal-modal small">
-            <h2 class="light">Oops, slight problem</h2>
-            <p class="lead">You need to give me something to work with</p>
-            <p>Before I can generate a report, I need you to specify what you want me to report
-            on by drawing a shape on the map.</p>
-            <a href="javascript://" class="close-reveal-modal">&#215;</a>
+        <div class='col-md-8'>
+            <div id="map"></div>
         </div>
-        <div id="date-error" class="reveal-modal small">
-            <h2 class="light">Oops, slight problem</h2>
-            <p class="lead">At least one of your dates isn’t formatted correctly.
-            The date fields down at the bottom of the map expect dates formatted like this:
-            <strong>YYYY-MM-DD</strong></p>
-            <a href="javascript://" class="close-reveal-modal">&#215;</a>
-        </div>
-        <div id="time-error" class="reveal-modal small">
-            <h2 class="light">Oops, slight problem</h2>
-            <p class="lead">It looks like the time of day range that you specified has a start time
-            that occurs after the end time. Please correct this and try again.</p>
-            <a href="javascript://" class="close-reveal-modal">&#215;</a>
-        </div>
-        <div id="shape-error" class="reveal-modal small">
-            <h2 class="light">Oops, slight problem</h2>
-            <p class="lead">
-                Before we can run your query, you’ll need to make sure to draw
-                a shape on the map using the tools on the left-hand side.
-            </p>
-            <a href="javascript://" class="close-reveal-modal">&#215;</a>
-        </div> -->
 
+        <!-- Core libraries -->
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/moment.min.js"></script>
+        <script src="/js/ejs_production.js"></script>
+
+        <!-- Map libraries -->
         <script src="http://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.js"></script>
         <script src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.js'></script>
         <script src="/js/leaflet.label.js"></script>
 
-        <script src="/js/moment.min.js"></script>
-        <script src="/js/jquery-ui.min.js"></script>
+        <!-- Jquery libraries -->
         <script src="/js/daterangepicker.js"></script>
+        <script src="/js/jquery-ui.min.js"></script>
         <script src="/js/jquery.cookie.js"></script>
         <script src="/js/chosen.jquery.min.js"></script>
-        <script src="/js/ejs_production.js"></script>
         <script src="/js/spin.min.js"></script>
         <script src="/js/jquery.spin.js"></script>
         <script src="/js/jquery.fileDownload.js"></script>
-        <script src="/js/map.js?2"></script>
+
+        <!-- Data -->
+        <script src="/data/police_beats.js"></script>
+        <script src="/data/community_areas.js"></script>
+        
+        <!-- App -->
+        <script src="/js/app.js"></script>
+
+        <!-- Analytics libraries -->
         <script src="/js/jquery.ba-hashchange.js"></script>
         <script src="/js/analytics_lib.js"></script>
 
