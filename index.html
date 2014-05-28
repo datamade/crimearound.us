@@ -33,7 +33,7 @@
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse" role="navigation">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -41,7 +41,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">CrimeAround.us</a>
+          <a class="navbar-brand" href="/"><i class='fa fa-star'></i> CrimeAround.us</a>
           <span class='navbar-text'>Search crime reports in Chicago</span>
         </div>
         <div class="collapse navbar-collapse">
@@ -54,6 +54,7 @@
               </ul>
             </li>
             <li><a href="/about.html"><i class="fa fa-info-circle"></i> About</a></li>
+            <li><a href="/faq.html"><i class="fa fa-question-circle"></i> FAQ</a></li>
             <li><a href="/help.html"><i class="fa fa-question-circle"></i> Help</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -74,7 +75,7 @@
                     </div>
                     <div id="collapse-intro" class="panel-collapse collapse">
                       <div class="panel-body">
-                        <p><strong>CrimeAround.us</strong> is a tool for browsing crime reports from the Chicago Police Department. Reports are available for the City of Chicago from 2001 to <a href='#'>one week ago</a>.</p>
+                        <p><strong>CrimeAround.us</strong> is a tool for browsing crime reports from the Chicago Police Department. Reports are available for the City of Chicago from 2001 to <a href='/faq.html#one-week-old'>one week ago</a>.</p>
 
                         <p>Draw on the map or use the filters below. Read the <a href='/help.html'>help page</a> for more.</p>
 
@@ -87,7 +88,7 @@
                 <div id="filters">
                     <form role="form">
                         <div class="form-group col-sm-12">
-                            <label for="start">
+                            <label for="date_range">
                                 <i class='fa fa-calendar'></i>
                                 Date reported
                             </label>
@@ -97,7 +98,7 @@
                         <div class="form-group col-sm-12">
                             <label for="crime-type">
                                 <i class='fa fa-navicon'></i>
-                                Crime type
+                                Crime type <small>(<a href="/help.html#crime-type">more info</a>)</small>
                             </label><br />
                             <select id="crime-type" data-placeholder="All crime types" class="chosen-select form-control" multiple>
                                 <option value=""></option>

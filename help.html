@@ -26,7 +26,7 @@
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -35,11 +35,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">CrimeAround.us</a>
+          <a class="navbar-brand" href="/"><i class='fa fa-star'></i> CrimeAround.us</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav pull-right">
             <li><a href="/about.html"><i class="fa fa-info-circle"></i> About</a></li>
+            <li><a href="/faq.html"><i class="fa fa-question-circle"></i> FAQ</a></li>
             <li><a href="/help.html"><i class="fa fa-question-circle"></i> Help</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -48,9 +49,63 @@
 
     <div class="container">
         <div class='row'>
-            <div class='col-md-10'>
-                <h2 class="light">Help</h2>
-                <h3 id='drawing-on-the-map'>Drawing on the map</h3>
+            <div class='col-md-8'>
+                <h2>Help</h2>
+
+                <div class='well'>
+                    <ul class='list-unstyled'>
+                        <li>
+                            <a href='#filters'>Filtering your search</a>
+                            <ul>
+                                <li><a href='#date-reported'>Date reported</a></li>
+                                <li><a href='#crime-type'>Crime type</a></li>
+                                <li><a href='#advanced'>Advanced filters</a></li>
+                            </ul>
+                        </li>
+                        <li><a href='#drawing-on-the-map'>Drawing an area to search</a></li>
+                        <li><a href='#remember-search'>Remember this search</a></li>
+                        <li><a href='#download-search'>Download data as a spreadsheet (XLS)</a></li>
+                        <li><a href='#print'>Printable PDF</a></li>
+                    </ul>
+                </div>
+
+                <h3 id='filters'>Filtering your search</h3>
+                <p>
+                    CrimeAround.us allows you to filter on different crime report attributes.
+                </p>
+
+                <h4 id='date-reported'><i class='fa fa-calendar'></i> Date reported</h4>
+                <p>The date the crime occurred. We have reports going back to Jan 1st, 2001. Be warned, searching over multiple years may take a while to process.</p>
+
+                <h4 id='crime-type'><i class='fa fa-navicon'></i> Crime type</h4>
+                <p>Each crime is classified as one of 30 different types, such as <a href='/#date__lte=1391666399&date__gte=1390975200&primary_type=ASSAULT'>Assault</a>, <a href='/#date__lte=1391666399&date__gte=1390975200&primary_type=NARCOTICS'>Narcotics</a>, or <a href='/#date__lte=1391666399&date__gte=1357020000&primary_type=PROSTITUTION'>Prostitution</a>. For more detail, see the <a href='http://gis.chicagopolice.org/clearmap/crime_types.html'>full definition list</a> on the Chicago Police Department ClearPath website.</p>
+
+                <p>Also, for each incident, multiple offenses can be reported, but the data we get only reveals most serious offense.</p>
+
+                <p>We also group crime types in to <strong class='violent'>violent crimes</strong>, <strong class='property'>property crimes</strong> and <strong class='quality'>quality of life crimes</strong> in the same way that the <a href='http://crime.chicagotribune.com/chicago/faq#community-type-definition'>Chicago Tribune does</a>. In order to accomodate all of the other categories of crime that these three buckets do not cover, we also added an <strong class="other">other</strong> category.</p>
+                <ul>
+                    <li><strong class='violent'>Violent crimes</strong> - assault, battery, homicide, robbery, sexual assault</li>
+                    <li><strong class='property'>Property crimes</strong> - arson, burglary, motor vehicle theft, theft</li>
+                    <li><strong class='quality'>Quality of life crimes</strong> - criminal damage, narcotics, prostitution</li>
+                    <li><strong class='other'>Other crimes</strong> - criminal trespass, deceptive practice, gambling, interference with a public officer, intimidation, kidnapping, liquor law violation, non-criminal, obscenity, other offense, other narcotic violation, public indecency, public peace violation, ritualism, sex offense, stalking, weapons violation</li>
+                </ul>
+
+                <hr />
+                <h3 id='advanced'>Advanced filters</h3>
+
+                <h4 id='hour-of-day'><i class='fa fa-clock-o'></i> Hour of day</h4>
+                <p>We can group crimes by the time of day it happened. Use the slider to select the range of hours that you are interested in.</p>
+
+                <h4 id='location-description'><i class='fa fa-map-marker'></i> Location description</h4>
+                <p>Crimes can be filtered by location description as well. This includes places like <a href='/#date__lte=1391666399&date__gte=1390975200&location_description=business_liquor'>Liquor stores</a>, <a href='/#date__lte=1391666399&date__gte=1390975200&location_description=cta'>CTA stations</a> and <a href='/#date__lte=1391666399&date__gte=1390975200&location_description=outdoors_public%2Coutdoors_residence'>streets</a>.</p>
+
+                <h4 id='police-beat'><i class='fa fa-map-marker'></i> Police beat</h4>
+                <p>The Chicago Police Department divides the city in to <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts'>22 districts</a>, which are then divided in to a number of police beats made up of several city blocks. We provide the ability to filter crime by police beat.</p>
+
+                <p><img src='/images/beat_0111.png' alt='Beat 0111' /></p>
+
+                <hr />
+                <h3 id='drawing-on-the-map'>Drawing an area to search</h3>
                 <p>
                     Using the tools on the left side of the map,
                     you can draw a custom shape on the map to define the area that
@@ -73,60 +128,24 @@
                 </div>
 
                 <hr />
-                <h3 id='filters'>Filters</h3>
-                <p>
-                    In addition to drawing on the map, you can filter on different crime attributes.
-                </p>
-
-                <p>
-                    <img src='/images/filters.png' alt='Search filters' />
-                </p>
-
-                <h4>Date &amp; time</h4>
-                <p>The date the crime occurred. We have reports going back to Jan 1st, 2001. Be warned, searching over multiple years may take a while to process.</p>
-
-                <h4>Time of day</h4>
-                <p>We can group crimes by the time of day it happened. Use the slider to select the range of hours that you are interested in.</p>
-
-                <h4>Crime type</h4>
-                <p>Each crime is classified as one of 30 different types, such as <a href='/#date__lte=1391666399&date__gte=1390975200&primary_type=ASSAULT'>Assault</a>, <a href='/#date__lte=1391666399&date__gte=1390975200&primary_type=NARCOTICS'>Narcotics</a>, or <a href='/#date__lte=1391666399&date__gte=1357020000&primary_type=PROSTITUTION'>Prostitution</a>. For more detail, see the <a href='http://gis.chicagopolice.org/clearmap/crime_types.html'>full definition list</a> on the Chicago Police Department ClearPath website.</p>
-
-                <p>Also, for each incident, multiple offenses can be reported, but the data we get only reveals most serious offense.</p>
-
-                <p>We also group crime types in to <strong class='violent'>violent crimes</strong>, <strong class='property'>property crimes</strong> and <strong class='quality'>quality of life crimes</strong> in the same way that the <a href='http://crime.chicagotribune.com/chicago/faq#community-type-definition'>Chicago Tribune does</a>. In order to accomodate all of the other categories of crime that these three buckets do not cover, we also added an <strong class="other">other</strong> category.</p>
-                <ul>
-                    <li><strong class='violent'>Violent crimes</strong> - assault, battery, homicide, robbery, sexual assault</li>
-                    <li><strong class='property'>Property crimes</strong> - arson, burglary, motor vehicle theft, theft</li>
-                    <li><strong class='quality'>Quality of life crimes</strong> - criminal damage, narcotics, prostitution</li>
-                    <li><strong class='other'>Other crimes</strong> - criminal trespass, deceptive practice, gambling, interference with a public officer, intimidation, kidnapping, liquor law violation, non-criminal, obscenity, other offense, other narcotic violation, public indecency, public peace violation, ritualism, sex offense, stalking, weapons violation</li>
-                </ul>
-
-                <h4>Location type</h4>
-                <p>Crimes can be filtered by location description as well. This includes places like <a href='/#date__lte=1391666399&date__gte=1390975200&location_description=business_liquor'>Liquor stores</a>, <a href='/#date__lte=1391666399&date__gte=1390975200&location_description=cta'>CTA stations</a> and <a href='/#date__lte=1391666399&date__gte=1390975200&location_description=outdoors_public%2Coutdoors_residence'>streets</a>.</p>
-
-                <h4>Police beat</h4>
-                <p>The Chicago Police Department divides the city in to <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts'>22 districts</a>, which are then divided in to a number of police beats made up of several city blocks. We provide the ability to filter crime by police beat.</p>
-
-                <p><img src='/images/beat_0111.png' alt='Beat 0111' /></p>
-
-                <hr />
-                <h3 id='remember-your-search'>Remember your search</h3>
+                <h3 id='remember-search'><i class='fa fa-star'></i> Remember this search</h3>
                 <p>
                     If you’re interested in saving the results of your search to review at a later time, use the
-                    <a class='light'>Remember Search</a> link to add a menu item where you can easily reload your
+                    <a>Remember Search</a> link to add a menu item where you can easily reload your
                     results later.
                 </p>
                     <img src='/images/remember.png' alt='Remember Your Search' />
-                <h3 id='download-your-search'>Download your search</h3>
+                
+                <h3 id='download-search'><i class='fa fa-table'></i> Download data as a spreadsheet (XLS)</h3>
                 <p>
                     If you’re interested in downloading the crime data you’re
                     searched for, you can use the
-                    <a class='light'>Download</a> link to download the data as an Excel spreadsheet.
+                    <a>Download</a> link to download the data as an Excel spreadsheet.
                 </p>
-                <h3 id='print-your-search'>Print your search</h3>
+                <h3 id='print'><i class='fa fa-print'></i> Printable PDF</h3>
                 <p>
                     If you’re interested in printing out the results of your search, click the
-                    <a class='light'>Print</a> link to download a PDF of your search that is suitable for printing.
+                    <a>Print</a> link to download a PDF of your search that is suitable for printing.
                 </p>
             </div>
         </div>

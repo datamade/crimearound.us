@@ -26,7 +26,7 @@
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -35,11 +35,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">CrimeAround.us</a>
+          <a class="navbar-brand" href="/"><i class='fa fa-star'></i> CrimeAround.us</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav pull-right">
             <li><a href="/about.html"><i class="fa fa-info-circle"></i> About</a></li>
+            <li><a href="/faq.html"><i class="fa fa-question-circle"></i> FAQ</a></li>
             <li><a href="/help.html"><i class="fa fa-question-circle"></i> Help</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -48,16 +49,17 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-10">
-                <h2 class="light">About</h2>
-                <p><strong>Crime Around Us</strong> is a tool for browsing crimes reported to the <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath'>City of Chicago Police Department</a> from 2001 to <a href=''>one week ago</a>.</p>
+            <div class="col-md-8">
+                <h2>About</h2>
+                <p><strong>Crime Around Us</strong> is a tool for browsing crimes reported to the <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath'>City of Chicago Police Department</a> from 2001 to <a href='#'>one week ago</a>.</p>
 
-                <p>This site, which is updated daily from the <a href='https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2'>Chicago Data Portal</a>, allows anyone to search for crime in any area of the city by drawing a box or a custom shape on the map like so:</p>
+                <p>This site, which is updated daily from the <a href='https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2'>Chicago Data Portal</a>, allows anyone to search for crime in any area of the city by <a href='/help.html#drawing-on-the-map'>drawing a box or a custom shape on the map</a> like so:</p>
 
                 <p><img src="images/custom_shape_1.png" alt='Custom shape in Chicago'/></p>
 
                 <p>Additionally, you can filter by the <strong>date</strong> the crime was reported, <strong>time of day</strong>, <strong>crime type</strong> and <strong>type of location</strong>. Read our <a href='/help.html'>help page</a> to learn more about using these filters.</p>
 
+                <hr />
                 <h3>Who built this?</h3>
                 <p>
                     This app was originally built by <a href="https://twitter.com/evanzanten">Eric van Zanten</a>,
@@ -67,7 +69,8 @@
 
                 <p>Crime Around Us is currently being developed in partnership with <a href="http://datamade.us">DataMade</a> and <a href="http://www.lisc-chicago.org/">LISC Chicago</a>. The database with all our crime data is <a href='http://www.smartchicagocollaborative.org/projects/hosted-web-space/'>hosted</a> by <a href="http://www.smartchicagocollaborative.org">The Smart Chicago Collaborative</a> and the website is hosted on <a href=''>Github Pages</a>.</p>
 
-                <h3>This app is open source</h3>
+                <hr />
+                <h3>Steal this code!</h3>
                 <p>All of the code for this project is open source. It's comprised of a <a href='https://github.com/evz/crimeapi/'>database of crime data</a> and <a href='https://github.com/datamade/crimearound.us/'>this website</a> for bowsing it.</p>
 
                 <p><strong><a href='https://github.com/evz/crimeapi/'>Crime API</a></strong>
@@ -84,6 +87,7 @@
                     <li><a href='http://leafletjs.com/'>Leaflet</a> - interactive map</li>
                 </ul>
 
+                <hr />
                 <h3>Contact us</h3>
                 <p>Found a bug? Have a suggestion? <a href='https://github.com/datamade/crimearound.us/issues/'>Report it on our issue tracker!</a> If you'd rather email us, get in touch at <a href='mailto:info@datamade.us'>info (at) datamade.us</a></p>
             </div>

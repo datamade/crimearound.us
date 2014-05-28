@@ -56,7 +56,7 @@ $(window).resize(function () {
         }
     });
 
-    drawControl.setPosition('topright')
+    drawControl.setPosition('topleft')
     map.addControl(drawControl);
     map.on('draw:created', draw_create);
     map.on('draw:edited', draw_edit);
@@ -161,6 +161,7 @@ $(window).resize(function () {
 
     // init map, filters and events
     $('.chosen-select').chosen();
+
     $('#submit-query').on('click', function(e){
         e.preventDefault();
         submit_search();
@@ -185,9 +186,7 @@ $(window).resize(function () {
                 reload_state(query, resp);
             }
         ).fail();
-        default_view = false;
     } else {
-        default_view = true;
         // set default filters
         var crime_types = "THEFT,BATTERY,CRIMINAL DAMAGE,NARCOTICS";
         $.each(crime_types.split(","), function(i,e){
@@ -276,11 +275,6 @@ $(window).resize(function () {
             } else if (crimes.getLayers().length > 0){
                 map.fitBounds(crimes.getBounds());
             }
-
-            // zoom in for default zoom
-            // console.log("default: " + default_view);
-            // if (default_view)
-            //     map.setZoom(map.getZoom() + 1);
 
         }).fail(function(data){
             console.log(data);
