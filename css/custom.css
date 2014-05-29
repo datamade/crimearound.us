@@ -3,9 +3,9 @@ body {
 }
 
 .violent { color: #984ea3; }
-.property { color: #ff7f00; }
+.property { color: #377eb8; }
 .quality { color: #4daf4a;}
-.other { color: #377eb8;}
+.other { color: #ff7f00;}
 
 #mapinfo {
   padding: 10px 15px;

@@ -5,11 +5,13 @@ $(window).resize(function () {
   $('#map').css('height', (h - offsetTop));
 }).resize();
 
+var map;
+
 (function(){
     var drawnItems = new L.FeatureGroup();
     var crimes = new L.FeatureGroup();
     var beats = new L.FeatureGroup();
-    var map;
+    
     var meta = L.control({position: 'bottomright'});
     var meta_data;
     var start_date;
@@ -21,8 +23,8 @@ $(window).resize(function () {
     //var endpoint = 'http://127.0.0.1:5000';
 
     var colors = [
-       '#ff7f00',
        '#377eb8',
+       '#ff7f00',
        '#4daf4a',
        '#984ea3'
     ];
@@ -415,6 +417,9 @@ $(window).resize(function () {
         } else if (crimes.getLayers().length > 0){
             map.fitBounds(crimes.getBounds());
         }
+
+        if (map.getZoom() <= 11)
+            map.setZoom(map.getZoom() + 1);
     }
 
     function remember_search(){
