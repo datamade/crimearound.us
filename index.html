@@ -76,8 +76,13 @@
                       <div class="panel-body">
                         <p><strong>CrimeAround.us</strong> is a tool for browsing crime reports from the Chicago Police Department. Reports are available for the City of Chicago from 2001 to <a href='/faq.html#one-week-old'>one week ago</a>.</p>
 
-                        <p>Draw on the map or use the filters below. Read the <a href='/help.html'>help page</a> for more.</p>
-
+                        <label for="draw">
+                            Filter your search
+                        </label>
+                        <div class='clearfix'></div>
+                        <p class='pull-left'><img id='drawing-tools-img' src='/images/draw-tools.png' alt='drawing tools' /></p>
+                        <p><a href='/help.html#drawing-on-the-map'>Draw a box or a custom shape</a> on the map or use the <a href='http://localhost:8000/help.html#filters'>filters</a> below to filter crime reports.</p>
+                    
                         <p class='pull-right'><a class='btn btn-primary' href='#' id='dismiss-intro'>OK, thanks!</a></p>
                       </div>
                     </div>
@@ -197,18 +202,6 @@
                             <div class='pull-right'>
                                 <a href='#' id='report' class='btn btn-default' data-toggle="tooltip" title="Download data as spreadsheet (XLS)"><i class="fa fa-table"></i></a>
                                 <a href='#' id='print' class='btn btn-default' data-toggle="tooltip" title="Printable PDF"><i class="fa fa-print"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-12">
-                            <div class='well'>
-                                <label for="draw">
-                                    <i class='fa fa-pencil'></i>
-                                    Draw a custom shape
-                                </label>
-                                <div class='clearfix'></div>
-                                <p class='pull-left'><img id='drawing-tools-img' src='/images/draw-tools.png' alt='drawing tools' /></p>
-                                <p>Using the drawing tools on the map, you can filter crime reports by drawing a box or a custom shape. <a href='/help.html#drawing-on-the-map'>Read more</a></p>
                             </div>
                         </div>
                     </form>
