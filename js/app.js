@@ -11,7 +11,7 @@ var map;
     var drawnItems = new L.FeatureGroup();
     var crimes = new L.FeatureGroup();
     var beats = new L.FeatureGroup();
-    
+
     var meta = L.control({position: 'bottomright'});
     var meta_data;
     var start_date;
@@ -207,13 +207,29 @@ var map;
     function draw_edit(e){
         var layers = e.layers;
         crimes.clearLayers();
+        var query = meta_data['query'];
         layers.eachLayer(function(layer){
             drawnItems.addLayer(layer);
+            query['location_geom__within'] = JSON.stringify(layer.toGeoJSON());
         });
+        $('#map').spin('large');
+        $.when(get_results(query)).then(function(resp){
+            $('#map').spin(false);
+            add_resp_to_map(query, resp);
+            map.fitBounds(drawnItems.getBounds());
+        })
     }
 
     function draw_create(e){
         drawnItems.addLayer(e.layer);
+        var query = meta_data['query'];
+        query['location_geom__within'] = JSON.stringify(e.layer.toGeoJSON());
+        $('#map').spin('large');
+        $.when(get_results(query)).then(function(resp){
+            $('#map').spin(false);
+            add_resp_to_map(query, resp);
+            map.fitBounds(drawnItems.getBounds());
+        })
     }
 
     function draw_delete(e){
