@@ -3,6 +3,7 @@ $(window).resize(function () {
     offsetTop = 80; // Calculate the top offset
 
   $('#map').css('height', (h - offsetTop));
+  $('#mapinfo').css('height', (h - offsetTop));
 }).resize();
 
 var map;
