@@ -1,4 +1,4 @@
-<strong class=<%= crime_type %>><%= primary_type %> - <%= description %></strong>
+<strong class=<%= crime_type %>><a href="help.html#<%= fbi_code %>"><%= primary_type %> - <%= description %></a></strong>
 <p>
     <i class="fa fa-calendar"></i> <%= moment(orig_date).format('dddd MMM D, YYYY') %><br />
     <i class="fa fa-clock-o"></i> <%= moment(orig_date).format('h:mma') %>

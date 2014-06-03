@@ -18,7 +18,7 @@ var map;
     var start_date;
     var end_date;
     var default_view = false;
-
+    var cookiename = 'crimearound_us_v2'
     var endpoint = 'http://api.crimearound.us';
     //var endpoint = 'http://crime-weather.smartchicagoapps.org';
     //var endpoint = 'http://127.0.0.1:5000';
@@ -104,13 +104,13 @@ var map;
             $('#time-end').data('value', e);
         }
     });
-    if (typeof $.cookie('crimearound_us') === 'undefined'){
-        $.cookie('crimearound_us', JSON.stringify([]), {
+    if (typeof $.cookie(cookiename) === 'undefined'){
+        $.cookie(cookiename, JSON.stringify([]), {
             json: true,
             expires: 365
         });
     } else {
-        var saves = $.cookie('crimearound_us');
+        var saves = $.cookie(cookiename);
         saves = $.parseJSON(saves);
         if (saves.length > 0){
             $.each(saves, function(i, save){
@@ -443,9 +443,9 @@ var map;
         var hash = window.location.hash.slice(1,window.location.hash.length);
         var query = parseParams(hash);
         query['name'] = moment(query['obs_date__ge']).format('M/D/YYYY') + " - " + moment(query['obs_date__le']).format('M/D/YYYY');
-        var cookie_val = $.parseJSON($.cookie('crimearound_us'));
+        var cookie_val = $.parseJSON($.cookie(cookiename));
         cookie_val.push(query);
-        $.cookie('crimearound_us', JSON.stringify(cookie_val));
+        $.cookie(cookiename, JSON.stringify(cookie_val));
         $('#remember i').attr('class', 'fa fa-star');
 
         var item = '<li><a class="saved-search" href="#"><i class="fa fa-star"></i> ' + query['name'] + '</a></li>'
@@ -460,21 +460,21 @@ var map;
 
     function delete_search(e){
         var name = $(e.currentTarget).prev().text();
-        var cookie_val = $.parseJSON($.cookie('crimearound_us'));
+        var cookie_val = $.parseJSON($.cookie(cookiename));
         var new_cookie = []
         $.each(cookie_val, function(i, val){
             if(val.name != name){
                 new_cookie.push(val);
             }
         })
-        $.cookie('crimearound_us', JSON.stringify(new_cookie));
+        $.cookie(cookiename, JSON.stringify(new_cookie));
         $(e.currentTarget).parent().remove();
     }
 
     function load_remembered_search(e){
         $('#map').spin('large');
         var name = $(e.target).text().trim();
-        var cookie_val = $.parseJSON($.cookie('crimearound_us'));
+        var cookie_val = $.parseJSON($.cookie(cookiename));
         var query = null;
         $.each(cookie_val, function(i, val){
             if(val.name == name){
