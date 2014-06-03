@@ -20,7 +20,6 @@ var map;
     var default_view = false;
     var cookiename = 'crimearound_us_v2'
     var endpoint = 'http://api.crimearound.us';
-    //var endpoint = 'http://crime-weather.smartchicagoapps.org';
     //var endpoint = 'http://127.0.0.1:5000';
 
     var colors = [
@@ -64,7 +63,7 @@ var map;
     map.on('draw:created', draw_create);
     map.on('draw:edited', draw_edit);
     map.on('draw:deleted', draw_delete);
-
+    map.on('draw:drawstart', draw_delete);
     start_date = moment().subtract('d', 9);
     end_date = moment().subtract('d', 8);
     $('#date_range').daterangepicker(
