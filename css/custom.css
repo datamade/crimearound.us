@@ -27,6 +27,11 @@ table#iucr-table thead {
     overflow: scroll;
 }
 
+.select2-container-multi .select2-choices .select2-search-choice { 
+  background-color: #fff; 
+  background-image: none; 
+}
+
 .panel-group .panel { overflow:visible; }
 
 #drawing-tools-img { margin-right: 10px; margin-top: 5px;}
