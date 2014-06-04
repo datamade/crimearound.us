@@ -138,7 +138,7 @@ var map;
     })
 
     //populate beats
-    var beat_select = "<select id='police-beat' data-placeholder='All police beats' class='chosen-select form-control' multiple>";
+    var beat_select = "<select id='police-beat' data-placeholder='All police beats' class='select2 form-control' multiple>";
     var keys = [];
     for (k in police_beats){
         if (police_beats.hasOwnProperty(k)){
@@ -162,7 +162,14 @@ var map;
     $('#beat-filters').append(beat_select);
 
     // init map, filters and events
-    $('.chosen-select').chosen();
+    $('.select2').select2();
+
+    // format select2 for crime types
+    $("#crime-type").select2({
+        formatResult: crime_type_format,
+        formatSelection: crime_type_format,
+        escapeMarkup: function(m) { return m; }
+    });
 
     $('#submit-query').on('click', function(e){
         e.preventDefault();
@@ -194,14 +201,8 @@ var map;
         $.each(crime_types.split(","), function(i,e){
             $("#crime-type option[value='" + e + "']").prop("selected", true);
         });
-        $('#crime-type').trigger('chosen:updated');
+        $('#crime-type').trigger('change');
         submit_search();
-    }
-
-    function toTitleCase(str){
-        return str.replace(/\w\S*/g, function(txt){
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        });
     }
 
     function draw_edit(e){
@@ -398,19 +399,19 @@ var map;
             $.each(query['beat__in'].split(','), function(i, beat){
                 $('#police-beat').find('[value="' + beat + '"]').attr('selected', 'selected');
             });
-            $('#police-beat').trigger('chosen:updated');
+            $('#police-beat').trigger('change');
         }
         if(typeof query['primary_type__in'] !== 'undefined'){
             $.each(query['primary_type__in'].split(','), function(i, pt){
                 $('#crime-type').find('[value="' + pt + '"]').attr('selected', 'selected');
             });
-            $('#crime-type').trigger('chosen:updated');
+            $('#crime-type').trigger('change');
         }
         if(typeof query['locations'] !== 'undefined'){
             $.each(query['locations'].split(','), function(i, loc){
                 $('#crime-location').find('[value="' + loc + '"]').attr('selected', 'selected');
             });
-            $('#crime-location').trigger('chosen:updated');
+            $('#crime-location').trigger('change');
         }
         if(typeof query['orig_date__time_of_day_le'] !== 'undefined'){
             var s = query['orig_date__time_of_day_ge'];
@@ -531,6 +532,19 @@ var map;
     }
 
     // utility functions
+    function crime_type_format(el) {
+        var originalOption = el.element;
+
+        if (!el.id) return el.text; // optgroup
+        return "<span class='" + $(originalOption).data('type') + "'>" + el.text + "</span>";
+    }
+
+    function toTitleCase(str){
+        return str.replace(/\w\S*/g, function(txt){
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
+
     function convertTime(time){
         var meridian = time < 12 ? 'am' : 'pm';
         var hour = time % 12 || 12;

@@ -13,7 +13,9 @@
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/daterangepicker-bs3.css" rel="stylesheet">
-    <link href="/css/chosen.min.css" rel="stylesheet">
+
+    <link href="/css/select2.css" rel="stylesheet" />
+    <link href="/css/select2-bootstrap.css" rel="stylesheet" />
 
     <!-- Map CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
@@ -104,46 +106,47 @@
                                 <i class='fa fa-navicon'></i>
                                 Crime type <small>(<a href="/help.html#crime-type">more info</a>)</small>
                             </label><br />
-                            <select id="crime-type" data-placeholder="All crime types" class="chosen-select form-control" multiple>
-                                <option value=""></option>
+                            <div class='select2-wrapper'>
+                            <select id="crime-type" data-placeholder="All crime types" class="form-control" multiple>
                                 <optgroup label="Violent">
-                                    <option value="ASSAULT">Assault</option>
-                                    <option value="BATTERY">Battery</option>
-                                    <option value="CRIM SEXUAL ASSAULT">Criminal sexual assault</option>
-                                    <option value="HOMICIDE">Homicide</option>
-                                    <option value="ROBBERY">Robbery</option>
+                                    <option data-type='violent' value="ASSAULT">Assault</option>
+                                    <option data-type='violent' value="BATTERY">Battery</option>
+                                    <option data-type='violent' value="CRIM SEXUAL ASSAULT">Criminal sexual assault</option>
+                                    <option data-type='violent' value="HOMICIDE">Homicide</option>
+                                    <option data-type='violent' value="ROBBERY">Robbery</option>
                                 </optgroup>
                                 <optgroup label="Property">
-                                    <option value="ARSON">Arson</option>
-                                    <option value="BURGLARY">Burglary</option>
-                                    <option value="MOTOR VEHICLE THEFT">Motor vehicle theft</option>
-                                    <option value="THEFT">Theft</option>
+                                    <option data-type='property' value="ARSON">Arson</option>
+                                    <option data-type='property' value="BURGLARY">Burglary</option>
+                                    <option data-type='property' value="MOTOR VEHICLE THEFT">Motor vehicle theft</option>
+                                    <option data-type='property' value="THEFT">Theft</option>
                                 </optgroup>
                                 <optgroup label="Quality of Life">
-                                    <option value="CRIMINAL DAMAGE">Criminal damage</option>
-                                    <option value="NARCOTICS">Narcotics</option>
-                                    <option value="PROSTITUTION">Prostitution</option>
+                                    <option data-type='quality' value="CRIMINAL DAMAGE">Criminal damage</option>
+                                    <option data-type='quality' value="NARCOTICS">Narcotics</option>
+                                    <option data-type='quality' value="PROSTITUTION">Prostitution</option>
                                 </optgroup>
                                 <optgroup label="Other">
-                                    <option value="CRIMINAL TRESPASS">Criminal trespass</option>
-                                    <option value="DECEPTIVE PRACTICE">Deceptive practice</option>
-                                    <option value="GAMBLING">Gambling</option>
-                                    <option value="INTERFERE WITH PUBLIC OFFICER,INTERFERENCE WITH PUBLIC OFFICER">Interference with a public officer</option>
-                                    <option value="INTIMIDATION">Intimidation</option>
-                                    <option value="KIDNAPPING">Kidnapping</option>
-                                    <option value="LIQUOR LAW VIOLATION">Liquor law violation</option>
-                                    <option value="NON-CRIMINAL,NON-CRIMINAL (SUBJECT SPECIFIED)">Non-criminal</option>
-                                    <option value="OBSCENITY">Obscenity</option>
-                                    <option value="OTHER OFFENSE">Other offense</option>
-                                    <option value="OTHER NARCOTIC VIOLATION">Other narcotic violation</option>
-                                    <option value="PUBLIC INDECENCY">Public indecency</option>
-                                    <option value="PUBLIC PEACE VIOLATION">Public peace violation</option>
-                                    <option value="RITUALISM">Ritualism</option>
-                                    <option value="SEX OFFENSE">Sex offense</option>
-                                    <option value="STALKING">Stalking</option>
-                                    <option value="WEAPONS VIOLATION">Weapons violation</option>
+                                    <option data-type='other' value="CRIMINAL TRESPASS">Criminal trespass</option>
+                                    <option data-type='other' value="DECEPTIVE PRACTICE">Deceptive practice</option>
+                                    <option data-type='other' value="GAMBLING">Gambling</option>
+                                    <option data-type='other' value="INTERFERE WITH PUBLIC OFFICER,INTERFERENCE WITH PUBLIC OFFICER">Interference with a public officer</option>
+                                    <option data-type='other' value="INTIMIDATION">Intimidation</option>
+                                    <option data-type='other' value="KIDNAPPING">Kidnapping</option>
+                                    <option data-type='other' value="LIQUOR LAW VIOLATION">Liquor law violation</option>
+                                    <option data-type='other' value="NON-CRIMINAL,NON-CRIMINAL (SUBJECT SPECIFIED)">Non-criminal</option>
+                                    <option data-type='other' value="OBSCENITY">Obscenity</option>
+                                    <option data-type='other' value="OTHER OFFENSE">Other offense</option>
+                                    <option data-type='other' value="OTHER NARCOTIC VIOLATION">Other narcotic violation</option>
+                                    <option data-type='other' value="PUBLIC INDECENCY">Public indecency</option>
+                                    <option data-type='other' value="PUBLIC PEACE VIOLATION">Public peace violation</option>
+                                    <option data-type='other' value="RITUALISM">Ritualism</option>
+                                    <option data-type='other' value="SEX OFFENSE">Sex offense</option>
+                                    <option data-type='other' value="STALKING">Stalking</option>
+                                    <option data-type='other' value="WEAPONS VIOLATION">Weapons violation</option>
                                 </optgroup>
                             </select>
+                        </div>
                         </div>
 
                         <div class="panel-group col-sm-12" id="accordion-advanced">
@@ -177,7 +180,7 @@
                                         <i class='fa fa-map-marker'></i>
                                         Location description
                                     </label>
-                                    <select id="crime-location" data-placeholder="All location descriptions" class="chosen-select form-control" multiple></select>
+                                    <select id="crime-location" data-placeholder="All location descriptions" class="select2 form-control" multiple></select>
                                 </div>
 
                                 <div class="form-group col-sm-12">
@@ -232,7 +235,7 @@
         <script src="/js/daterangepicker.js"></script>
         <script src="/js/jquery-ui.min.js"></script>
         <script src="/js/jquery.cookie.js"></script>
-        <script src="/js/chosen.jquery.min.js"></script>
+        <script src="/js/select2.min.js"></script>
         <script src="/js/spin.min.js"></script>
         <script src="/js/jquery.spin.js"></script>
         <script src="/js/jquery.fileDownload.js"></script>
