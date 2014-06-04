@@ -151,9 +151,9 @@ var map;
         var k = keys[i];
         sorted_beats[k] = police_beats[k];
     }
-    $.each(sorted_beats, function(district, beats){
+    $.each(sorted_beats, function(district, s_beats){
         beat_select += "<optgroup label='" + district + "'>";
-        $.each(beats, function(i, beat){
+        $.each(s_beats, function(i, beat){
             beat_select += "<option value='" + beat + "'>" + beat + "</option>";
         })
         beat_select += "</optgroup>";
