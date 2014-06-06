@@ -27,6 +27,10 @@ table#iucr-table thead {
     overflow: scroll;
 }
 
+#iucr-table .violent {
+  white-space:nowrap;
+}
+
 .select2-container-multi .select2-choices .select2-search-choice { 
   background-color: #fff; 
   background-image: none; 

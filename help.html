@@ -83,150 +83,168 @@
                 <p>Also, for each incident, multiple offenses can be reported, but the data we get only reveals most serious offense.</p>
 
                 <p>We also group crime types in to <strong class='violent'>violent crimes</strong>, <strong class='property'>property crimes</strong> and <strong class='quality'>quality of life crimes</strong> in the same way that the <a href='http://crime.chicagotribune.com/chicago/faq#community-type-definition'>Chicago Tribune does</a>. In order to accomodate all of the other categories of crime that these three buckets do not cover, we also added an <strong class="other">other</strong> category.</p>
-                <ul>
-                    <li><strong class='violent'>Violent crimes</strong> - assault, battery, homicide, robbery, sexual assault</li>
-                    <li><strong class='property'>Property crimes</strong> - arson, burglary, motor vehicle theft, theft</li>
-                    <li><strong class='quality'>Quality of life crimes</strong> - criminal damage, narcotics, prostitution</li>
-                    <li><strong class='other'>Other crimes</strong> - criminal trespass, deceptive practice, gambling, interference with a public officer, intimidation, kidnapping, liquor law violation, non-criminal, obscenity, other offense, other narcotic violation, public indecency, public peace violation, ritualism, sex offense, stalking, weapons violation</li>
-                </ul>
+
                 <table id="iucr-table" class="table">
                     <thead id="crime-header">
                         <tr>
-                            <th>FBI Code</th>
-                            <th>Primary Type</th>
+                            <th>Group</th>
+                            <th>Crime Type</th>
                             <th>Description</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr id="01A">
-                            <td>01A</td>
-                            <td>Homicide 1st and 2nd degree</td>
-                            <td>The killing of one human being by another.</td>
+                        <tr>
+                            <td>Violent</td>
+                            <td class='violent'>Assault</td>
+                            <td>
+                                <p><strong>Simple</strong> An unlawful physical attack by one person upon another where neither the offender displays a weapon, nor the victim suffers obvious severe or aggravated bodily injury involving apparent broken bones, loss of teeth, possible internal injury, severe laceration, or loss of consciousness.</p>
+
+                                <p><strong>Aggravated</strong> An unlawful attack by one person upon another wherein the offender displays a weapon in a threatening manner. Placing someone in reasonable apprehension of receiving a battery.</p>
+                            </td>
                         </tr>
-                        <tr id="01B">
-                            <td>01B</td>
-                            <td>Involuntary manslaughter</td>
-                            <td>The killing of another person through negligence.</td>
+                        <tr>
+                            <td>Violent</td>
+                            <td class='violent'>Battery</td>
+                            <td>
+                                <p><strong>Simple</strong> A person commits battery if he intentionally or knowingly without legal justification and by any means, (1) causes bodily harm to an individual or (2) makes physical contact of an insulting or provoking nature with an individual.</p>
+
+                                <p><strong>Aggravated</strong> An unlawful attack by one person upon another wherein the offender uses a weapon or the victim suffers obvious severe or aggravated bodily injury involving apparent broken bones, loss of teeth, possible internal injury, severe laceration, or loss of consciousness.</p>
+                            </td>
                         </tr>
-                        <tr id="02">
-                            <td>02</td>
-                            <td>Criminal sexual assault</td>
+                        <tr>
+                            <td>Violent</td>
+                            <td class='violent'>Criminal sexual assault</td>
                             <td>Any sexual act directed against another person, forcibly and/or against that person's will or not forcibly or against the person's will in instances where the victim is incapable of giving consent.</td>
                         </tr>
-                        <tr id="03">
-                            <td>03</td>
-                            <td>Robbery</td>
+                        <tr>
+                            <td>Violent</td>
+                            <td class='violent'>Homicide</td>
+                            <td>The killing of one human being by another.</td>
+                        </tr>
+                        <tr>
+                            <td>Violent</td>
+                            <td class='violent'>Robbery</td>
                             <td>The taking or attempting to take anything of value under confrontational circumstances from the control, custody, or care of another person by force or threat of force or violence and/or by putting the victim in fear of immediate harm.</td>
                         </tr>
-                        <tr id="04A">
-                            <td>04A</td>
-                            <td>Aggravated assault</td>
-                            <td>An unlawful attack by one person upon another wherein the offender displays a weapon in a threatening manner. Placing someone in reasonable apprehension of receiving a battery.</td>
-                        </tr>
-                        <tr id="04B">
-                            <td>04B</td>
-                            <td>Aggravated battery</td>
-                            <td>An unlawful attack by one person upon another wherein the offender uses a weapon or the victim suffers obvious severe or aggravated bodily injury involving apparent broken bones, loss of teeth, possible internal injury, severe laceration, or loss of consciousness.</td>
-                        </tr>
-                        <tr id="05">
-                            <td>05</td>
-                            <td>Burglary</td>
-                            <td>The unlawful entry into a building or other structure with the intent to commit a felony or a theft.</td>
-                        </tr>
-                        <tr id="06">
-                            <td>06</td>
-                            <td>Theft</td>
-                            <td>The unlawful taking, carrying, leading, or riding away of property from the possession or constructive possession of another person.</td>
-                        </tr>
-                        <tr id="07">
-                            <td>07</td>
-                            <td>Motor vehicle theft</td>
-                            <td>The theft of a motor vehicle.</td>
-                        </tr>
-                        <tr id="08A">
-                            <td>08A</td>
-                            <td>Simple assault</td>
-                            <td>An unlawful physical attack by one person upon another where neither the offender displays a weapon, nor the victim suffers obvious severe or aggravated bodily injury involving apparent broken bones, loss of teeth, possible internal injury, severe laceration, or loss of consciousness.</td>
-                        </tr>
-                        <tr id="08B">
-                            <td>08B</td>
-                            <td>Simple battery</td>
-                            <td>A person commits battery if he intentionally or knowingly without legal justification and by any means, (1) causes bodily harm to an individual or (2) makes physical contact of an insulting or provoking nature with an individual.</td>
-                        </tr>
-                        <tr id="09">
-                            <td>09</td>
-                            <td>Arson</td>
+                        <tr>
+                            <td>Property</td>
+                            <td class='property'>Arson</td>
                             <td>To unlawfully and intentionally damage or attempt to damage any real or personal property by fire or incendiary device.</td>
                         </tr>
-                        <tr id="10">
-                            <td>10</td>
-                            <td>Forgery and counterfeiting</td>
-                            <td>The altering, copying, or imitation of something, without authority or right, with the intent to deceive or defraud by passing the copy or thing altered or imitated as that which is original or genuine or the selling, buying, or possession of an altered, copied, or imitated thing with the intent to deceive or defraud.</td>
+                        <tr>
+                            <td>Property</td>
+                            <td class='property'>Burglary</td>
+                            <td>The unlawful entry into a building or other structure with the intent to commit a felony or a theft.</td>
                         </tr>
-                        <tr id="11">
-                            <td>11</td>
-                            <td>Fraud</td>
-                            <td>The intentional perversion of the truth for the purpose of inducing another person or other entity in reliance upon it to part with something of value or to surrender a legal right.</td>
+                        <tr>
+                            <td>Property</td>
+                            <td class='property'>Motor vehicle theft</td>
+                            <td>The theft of a motor vehicle.</td>
                         </tr>
-                        <tr id="12">
-                            <td>12</td>
-                            <td>Embezzlement</td>
-                            <td>The unlawful misappropriation by an offender to his/her own use or purpose of money, property, or some other thing of value entrusted to his/her care, custody, or control.</td>
+                        <tr>
+                            <td>Property</td>
+                            <td class='property'>Theft</td>
+                            <td>The unlawful taking, carrying, leading, or riding away of property from the possession or constructive possession of another person.</td>
                         </tr>
-                        <tr id="13">
-                            <td>13</td>
-                            <td>Stolen property</td>
-                            <td>Receiving, buying, selling, possessing, concealing, or transporting any property with the knowledge that it has been unlawfully taken, as by Burglary, Embezzlement, Fraud, Larceny, Robbery, etc.</td>
-                        </tr>
-                        <tr id="14">
-                            <td>14</td>
-                            <td>Vandalism</td>
+                        <tr>
+                            <td>Quality of Life</td>
+                            <td class='quality'>Criminal damage</td>
                             <td>To willfully or maliciously destroy, damage, deface, or otherwise injure real or personal property without the consent of the owner or the person having custody or control of it.</td>
                         </tr>
-                        <tr id="15">
-                            <td>15</td>
-                            <td>Weapons violation</td>
-                            <td>The violation of laws or ordinances prohibiting the manufacture, sale, purchase, transportation, possession, concealment, or use of firearms, cutting instruments, explosives, incendiary devices, or other deadly weapons.</td>
-                        </tr>
-                        <tr id="16">
-                            <td>16</td>
-                            <td>Prostitution</td>
-                            <td>To unlawfully engage in or promote sexual activities for profit.</td>
-                        </tr>
-                        <tr id="17">
-                            <td>17</td>
-                            <td>Criminal sexual abuse</td>
-                            <td>The violation of laws prohibiting offenses against chastity, common decency, morals, and the like such as: adultery and fornication; bigamy; indecent exposure; and indecent liberties.</td>
-                        </tr>
-                        <tr id="18">
-                            <td>18</td>
-                            <td>Drug abuse</td>
+                        <tr>
+                            <td>Quality of Life</td>
+                            <td class='quality'>Narcotics</td>
                             <td>The violation of laws prohibiting the production, distribution, and/or use of certain controlled substances and the equipment or devices utilized in their preparation and/or use.</td>
                         </tr>
-                        <tr id="19">
-                            <td>19</td>
-                            <td>Gambling</td>
+                        <tr>
+                            <td>Quality of Life</td>
+                            <td class='quality'>Prostitution</td>
+                            <td>To unlawfully engage in or promote sexual activities for profit.</td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Criminal trespass</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Deceptive practice</td>
+                            <td>The intentional perversion of the truth for the purpose of inducing another person or other entity in reliance upon it to part with something of value or to surrender a legal right.</td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Gambling</td>
                             <td>To unlawfully bet or wager money or something else of value; assist, promote, or operate a game of chance for money or some other stake; possess or transmit wagering information; manufacture, sell, purchase, possess, or transport gambling equipment, devices, or goods; or tamper with the outcome of a sporting event or contest to gain a gambling advantage.</td>
                         </tr>
-                        <tr id="20">
-                            <td>20</td>
-                            <td>Offenses against family</td>
-                            <td>Unlawful, nonviolent acts by a family member (or legal guardian) that threaten the physical, mental, or economic well-being or morals of another family member and that are not classifiable as other offenses, such as Assault, Incest, Statutory Rape, etc.</td>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Interference with a public officer</td>
+                            <td></td>
                         </tr>
-                        <tr id="22">
-                            <td>22</td>
-                            <td>Liquor license</td>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Intimidation</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Kidnapping</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Liquor law violation</td>
                             <td>The violation of laws or ordinances prohibiting the manufacture, sale, purchase, transportation, possession, or use of alcoholic beverages.</td>
                         </tr>
-                        <tr id="24">
-                            <td>24</td>
-                            <td>Disorderly conduct</td>
-                            <td>Any behavior that tends to disturb the public peace or decorum, scandalize the community, or shock the public sense of morality.</td>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Non-criminal</td>
+                            <td></td>
                         </tr>
-                        <tr id="26">
-                            <td>26</td>
-                            <td>Miscellaneous</td>
-                            <td>The violation of miscellaneous laws or ordinances.</td>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Obscenity</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Other offense</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Other narcotic violation</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Public indecency</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Public peace violation</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Ritualism</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Sex offense</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Stalking</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Weapons violation</td>
+                            <td>The violation of laws or ordinances prohibiting the manufacture, sale, purchase, transportation, possession, concealment, or use of firearms, cutting instruments, explosives, incendiary devices, or other deadly weapons.</td>
                         </tr>
                     </tbody>
                 </table>
