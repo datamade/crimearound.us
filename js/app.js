@@ -12,6 +12,7 @@ var map;
     var drawnItems = new L.FeatureGroup();
     var crimes = new L.FeatureGroup();
     var beats = new L.FeatureGroup();
+    var community_areas_group = new L.FeatureGroup();
 
     var meta = L.control({position: 'bottomright'});
     var meta_data;
@@ -161,6 +162,18 @@ var map;
     beat_select += "</select>";
     $('#beat-filters').append(beat_select);
 
+    //populate community areas
+    var comm_select = "<select id='community-area' data-placeholder='All community areas' class='select2 form-control' multiple>";
+    $.each(community_areas, function(region, areas){
+        comm_select += '<optgroup label="' + region + '">';
+        $.each(areas, function(i, area){
+            comm_select += "<option value='" + area.number + "'>" + area.name + "</option>";
+        });
+        comm_select += '</optgroup>'
+    });
+    comm_select += "</select>";
+    $('#comm-area-filters').append(comm_select);
+
     // init map, filters and events
     $('.select2').select2();
 
@@ -283,14 +296,28 @@ var map;
                 query['beat__in'] = bts.join(',');
             }
         }
+        if ($('#community-area').val()){
+            var comms = [];
+            $.each($('#community-area').val(), function(i, area){
+                comms.push(parseInt(area));
+            });
+            if(comms.length > 0){
+                query['community_area__in'] = comms.join(',');
+            }
+        }
 
         $.when(get_results(query)).then(function(resp){
             if (typeof query.beat__in !== 'undefined'){
                 add_beats(query.beat__in.split(','));
             }
+            if (typeof query.community_area__in !== 'undefined'){
+                add_community_areas(query.community_area__in.split(','));
+            }
             add_resp_to_map(query, resp);
             if (beats.getLayers().length > 0){
                 map.fitBounds(beats.getBounds());
+            } else if (community_areas_group.getLayers().length > 0) {
+                map.fitBounds(community_areas_group.getBounds());
             } else if (crimes.getLayers().length > 0){
                 map.fitBounds(crimes.getBounds());
             }
@@ -318,6 +345,29 @@ var map;
             })
         });
         map.addLayer(beats, true);
+    }
+
+    function add_community_areas(areas){
+        community_areas_group.clearLayers();
+        $.each(areas, function(i, area){
+            if(area.length < 2){
+                area = '0' + area
+            }
+            $.getJSON('/data/community_areas/' + area + '.geojson', function(a){
+                community_areas_group.addLayer(L.geoJson(a, {
+                    style: function(){
+                        return {
+                            stroke: true,
+                            color: '#7B3294',
+                            weight: 4,
+                            opacity: 0.9,
+                            fill: false
+                        }
+                    }
+                }))
+            })
+        });
+        map.addLayer(community_areas_group, true);
     }
 
     function add_resp_to_map(query, resp){
@@ -428,9 +478,14 @@ var map;
         if (typeof query['beat__in'] !== 'undefined'){
             add_beats(query['beat__in'].split(','));
         }
+        if (typeof query['community_area__in'] !== 'undefined'){
+            add_community_areas(query['community_area__in'].split(','));
+        }
         add_resp_to_map(query, resp);
         if (beats.getLayers().length > 0){
             map.fitBounds(beats.getBounds());
+        } else if (community_areas_group.getLayers().length > 0){
+            map.fitBounds(community_areas_group.getBounds())
         } else if (crimes.getLayers().length > 0){
             map.fitBounds(crimes.getBounds());
         }
