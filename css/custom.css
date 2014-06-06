@@ -23,10 +23,6 @@ table#iucr-table thead {
     margin-right: 5px !important;
 }
 
-#mapinfo {
-    overflow: scroll;
-}
-
 #iucr-table .violent {
   white-space:nowrap;
 }
