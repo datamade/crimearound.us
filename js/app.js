@@ -419,7 +419,8 @@ var map;
 
     function reload_state(query, resp){
         $('#map').spin(false);
-        var location = resp['meta']['query']['location__within'];
+        var location = $.parseJSON(resp['meta']['query']['location_geom__within']);
+        console.log(location)
         if (typeof location !== 'undefined'){
             var shape_opts = {
                 stroke: true,
