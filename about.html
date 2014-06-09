@@ -1,47 +1,65 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>crimearound.us | About</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <title>CrimeAround.us - About</title>
 
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="foundation/stylesheets/foundation.min.css">
-        <link rel="stylesheet" href="foundation/stylesheets/app.css">
-        <link rel="stylesheet" href="foundation/stylesheets/general_foundicons.css">
-    </head>
-    <body>
-        <div class="fixed">
-            <nav class="top-bar">
-                <ul>
-                    <li class="name"><h1><a href="/">crimearound.us</a></h1></li>
-                </ul>
-                <section>
-                    <ul class="right">
-                        <li><a href="/about.html"><i class="fa fa-info-circle"></i> About</a></li>
-                        <li><a href="/help.html"><i class="fa fa-question-circle"></i> Help</a></li>
-                    </ul>
-                </section>
-            </nav>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/chosen.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><i class='fa fa-star'></i> CrimeAround.us</a>
         </div>
-        <div class="row">
-            <div class="ten columns centered about">
-                <h2 class="light">About</h2>
-                <p><strong>Crime Around Us</strong> is a tool for browsing crimes reported to the <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath'>City of Chicago Police Department</a> from 2001 to present.</p>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav pull-right">
+            <li><a href="/about.html"><i class="fa fa-info-circle"></i> About</a></li>
+            <li><a href="/faq.html"><i class="fa fa-question-circle"></i> FAQ</a></li>
+            <li><a href="/help.html"><i class="fa fa-question-circle"></i> Help</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 
-                <p>This site, which is updated daily from the <a href='https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2'>Chicago Data Portal</a>, allows anyone to search for crime in any area of the city by drawing a box or a custom shape on the map like so:</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2><i class='fa fa-info-circle'></i> About</h2>
+                <p><strong>Crime Around Us</strong> is a tool for browsing crimes reported to the <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath'>City of Chicago Police Department</a> from 2001 to <a href='#'>one week ago</a>.</p>
+
+                <p>This site, which is updated daily from the <a href='https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2'>Chicago Data Portal</a>, allows anyone to search for crime in any area of the city by <a href='/help.html#drawing-on-the-map'>drawing a box or a custom shape on the map</a> like so:</p>
 
                 <p><img src="images/custom_shape_1.png" alt='Custom shape in Chicago'/></p>
 
                 <p>Additionally, you can filter by the <strong>date</strong> the crime was reported, <strong>time of day</strong>, <strong>crime type</strong> and <strong>type of location</strong>. Read our <a href='/help.html'>help page</a> to learn more about using these filters.</p>
 
+                <hr />
                 <h3>Who built this?</h3>
                 <p>
                     This app was originally built by <a href="https://twitter.com/evanzanten">Eric van Zanten</a>,
@@ -51,31 +69,36 @@
 
                 <p>Crime Around Us is currently being developed in partnership with <a href="http://datamade.us">DataMade</a> and <a href="http://www.lisc-chicago.org/">LISC Chicago</a>. The database with all our crime data is <a href='http://www.smartchicagocollaborative.org/projects/hosted-web-space/'>hosted</a> by <a href="http://www.smartchicagocollaborative.org">The Smart Chicago Collaborative</a> and the website is hosted on <a href=''>Github Pages</a>.</p>
 
-                <h3>Code</h3>
-                <p>All of the code for this project is open source. It's comprised of a <a href='https://github.com/evz/crimeapi/'>database of crime data</a> and <a href='https://github.com/datamade/crimearound.us/'>this website</a> for bowsing it.</p>
+                <hr />
+                <h3>Steal this code!</h3>
+                <p>All of the code for this project is open source. It's comprised of a <a href='https://github.com/evz/crimeapi/'>database of crime data</a> and <a href='https://github.com/datamade/crimearound.us/'>this website</a> for browsing it.</p>
 
                 <p><strong><a href='https://github.com/evz/crimeapi/'>Crime API</a></strong>
                 - A python app that serves up crime data.</p>
                 <ul>
                     <li><a href='http://flask.pocoo.org/'>Flask</a> - python web framework</li>
-                    <li><a href='http://www.mongodb.org/'>MongoDB</a> - geospatial document storage database</li>
+                    <li><a href='http://postgis.net/'>PostGIS</a> - geospatial database</li>
                 </ul>
 
                 <p><strong><a href='https://github.com/datamade/crimearound.us/'>Crime Around Us</a></strong> - 
                 An HTML and Javascript website</p>
                 <ul>
-                    <li><a href='http://foundation.zurb.com/'>Foundation</a> - responsive HTML and CSS framework</li>
+                    <li><a href='http://getbootstrap.com/'>Bootstrap</a> - responsive HTML and CSS framework</li>
                     <li><a href='http://leafletjs.com/'>Leaflet</a> - interactive map</li>
                 </ul>
 
+                <hr />
                 <h3>Contact us</h3>
                 <p>Found a bug? Have a suggestion? <a href='https://github.com/datamade/crimearound.us/issues/'>Report it on our issue tracker!</a> If you'd rather email us, get in touch at <a href='mailto:info@datamade.us'>info (at) datamade.us</a></p>
             </div>
         </div>
-        <script src="foundation/javascripts/foundation.min.js"></script>
-        <script src="foundation/javascripts/app.js"></script>
+    </div>
 
-        <script src="js/jquery.ba-hashchange.js"></script>
-        <script src="js/analytics_lib.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+
+    <script src="js/jquery.ba-hashchange.js"></script>
+    <script src="js/analytics_lib.js"></script>
     </body>
 </html>

@@ -1,32 +1,20 @@
+body {
+  font-size: 16px;
+}
+
+table#iucr-table thead {
+    background-color: #fff;
+}
+
 .violent { color: #984ea3; }
-.property { color: #e41a1c; }
-.quality-of-life { color: #4daf4a;}
-.other { color: #377eb8;}
+.property { color: #377eb8; }
+.quality { color: #4daf4a;}
+.other { color: #ff7f00;}
+
+.navbar { margin-bottom: 10px; }
 
 .saved-search, .delete-search {
     display: inline !important;
-}
-.saved-searches li {
-    border-bottom: 1px solid #333;
-    padding-top: 5px;
-}
-.about p, .about li {
-    font-size: 14pt;
-}
-
-.top-bar {
-    margin-bottom: 0px !important;
-}
-
-.light {
-    font-weight: 300;
-}
-.fixed-bottom {
-    left: 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 99;
 }
 
 .date-wrapper {
@@ -35,42 +23,26 @@
     margin-right: 5px !important;
 }
 
-#mapinfo {
-    overflow: scroll;
+#iucr-table .violent {
+  white-space:nowrap;
 }
 
-#filters form {
-    margin-bottom: 0;
+.select2-container-multi .select2-choices .select2-search-choice { 
+  background-color: #fff; 
+  background-image: none; 
 }
+
+.panel-group .panel { overflow:visible; }
+
+#drawing-tools-img { margin-right: 10px; margin-top: 5px;}
 
 ul {
     list-style-position: inside !important;
 }
 
 .meta.leaflet-control {
-    width: 35%;
     background-color: #fff;
-    padding: 10px 0px;
-}
-
-.leaflet-container h1 {
-    font-size: 44px;
-}
-
-.leaflet-container h3 {
-    font-size: 27px;
-}
-
-.leaflet-container h5 {
-    font-size: 17px;
-}
-
-.meta h1 {
-    margin-bottom: 5px !important;
-}
-
-.meta h5 {
-    margin: 0 0 10px 0 !important;
+    padding: 10px 10px;
 }
 
 ul.chosen-choices li input {
@@ -176,6 +148,8 @@ ul.chosen-choices li input {
 .ui-slider {
   position: relative;
   text-align: left;
+  margin-left: 8px;
+  margin-top: 10px;
 }
 .ui-slider .ui-slider-handle {
   position: absolute;
@@ -271,7 +245,7 @@ ul.chosen-choices li input {
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
-  background: #f6f6f6 url("images/ui-bg_glass_100_f6f6f6_1x400.png") 50% 50% repeat-x;
+  background: #f6f6f6 50% 50% repeat-x;
   color: #1c94c4;
 }
 
@@ -281,19 +255,13 @@ ul.chosen-choices li input {
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-  background: #fdf5ce url("images/ui-bg_glass_100_fdf5ce_1x400.png") 50% 50% repeat-x;
+  background: #fdf5ce 50% 50% repeat-x;
   color: #c77405;
 }
 
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
-  background: #ffffff url("images/ui-bg_glass_65_ffffff_1x400.png") 50% 50% repeat-x;
+  background: #ffffff 50% 50% repeat-x;
   color: #eb8f00;
-}
-
-.leaflet-control-mapbox-geocoder .leaflet-control-mapbox-geocoder-wrap,
-.leaflet-control-mapbox-geocoder-results {
-    right: 26px;
-    left: inherit;
 }

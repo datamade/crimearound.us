@@ -1,218 +1,283 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>crimearound.us</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <title>CrimeAround.us - Search crime in your area</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/daterangepicker-bs3.css" rel="stylesheet">
+
+    <link href="/css/select2.css" rel="stylesheet" />
+    <link href="/css/select2-bootstrap.css" rel="stylesheet" />
+
+    <!-- Map CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.css" />
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.css" />
+    <link href="/css/leaflet.label.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><i class='fa fa-star'></i> CrimeAround.us</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav pull-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-star"></i> Searches <b class="caret"></b></a>
+              <ul class="dropdown-menu saved-searches">
+                <li class="dropdown-header">Saved searches</li>
+                <li class="divider"></li>
+              </ul>
+            </li>
+            <li><a href="/about.html"><i class="fa fa-info-circle"></i> About</a></li>
+            <li><a href="/faq.html"><i class="fa fa-question-circle"></i> FAQ</a></li>
+            <li><a href="/help.html"><i class="fa fa-question-circle"></i> Help</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+
+
+        <div class='col-md-4'>
+            <div id="mapinfo">
+                <div class="panel-group col-sm-12" id="accordion">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-intro">
+                        <i class='fa fa-info-circle'></i>
+                          What is CrimeAround.us?
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse-intro" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <p><strong>CrimeAround.us</strong> is a tool for browsing crime reports from the Chicago Police Department. Reports are available for the City of Chicago from 2001 to <a href='/faq.html#one-week-old'>one week ago</a>.</p>
+
+                        <label for="draw">
+                            Filter your search
+                        </label>
+                        <div class='clearfix'></div>
+                        <p class='pull-left'><img id='drawing-tools-img' src='/images/draw-tools.png' alt='drawing tools' /></p>
+                        <p><a href='/help.html#drawing-on-the-map'>Draw a box or a custom shape</a> on the map or use the <a href='http://localhost:8000/help.html#filters'>filters</a> below to filter crime reports.</p>
+
+                        <p class='pull-right'><a class='btn btn-primary' href='#' id='dismiss-intro'>OK, thanks!</a></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="filters">
+                    <form role="form">
+                        <div class="form-group col-sm-12">
+                            <label for="date_range">
+                                <i class='fa fa-calendar'></i>
+                                Date reported
+                            </label>
+                            <input id="date_range" class="date-filter start form-control" type="text"/>
+                        </div>
+
+                        <div class="form-group col-sm-12">
+                            <label for="crime-type">
+                                <i class='fa fa-navicon'></i>
+                                Crime type <small>(<a href="/help.html#crime-type">more info</a>)</small>
+                            </label><br />
+                            <div class='select2-wrapper'>
+                            <select id="crime-type" data-placeholder="All crime types" class="form-control" multiple>
+                                <optgroup label="Violent">
+                                    <option data-type='violent' value="ASSAULT">Assault</option>
+                                    <option data-type='violent' value="BATTERY">Battery</option>
+                                    <option data-type='violent' value="CRIM SEXUAL ASSAULT">Criminal sexual assault</option>
+                                    <option data-type='violent' value="HOMICIDE">Homicide</option>
+                                    <option data-type='violent' value="ROBBERY">Robbery</option>
+                                </optgroup>
+                                <optgroup label="Property">
+                                    <option data-type='property' value="ARSON">Arson</option>
+                                    <option data-type='property' value="BURGLARY">Burglary</option>
+                                    <option data-type='property' value="MOTOR VEHICLE THEFT">Motor vehicle theft</option>
+                                    <option data-type='property' value="THEFT">Theft</option>
+                                </optgroup>
+                                <optgroup label="Quality of Life">
+                                    <option data-type='quality' value="CRIMINAL DAMAGE">Criminal damage</option>
+                                    <option data-type='quality' value="NARCOTICS">Narcotics</option>
+                                    <option data-type='quality' value="PROSTITUTION">Prostitution</option>
+                                </optgroup>
+                                <optgroup label="Other">
+                                    <option data-type='other' value="CRIMINAL TRESPASS">Criminal trespass</option>
+                                    <option data-type='other' value="DECEPTIVE PRACTICE">Deceptive practice</option>
+                                    <option data-type='other' value="GAMBLING">Gambling</option>
+                                    <option data-type='other' value="INTERFERE WITH PUBLIC OFFICER,INTERFERENCE WITH PUBLIC OFFICER">Interference with a public officer</option>
+                                    <option data-type='other' value="INTIMIDATION">Intimidation</option>
+                                    <option data-type='other' value="KIDNAPPING">Kidnapping</option>
+                                    <option data-type='other' value="LIQUOR LAW VIOLATION">Liquor law violation</option>
+                                    <option data-type='other' value="NON-CRIMINAL,NON-CRIMINAL (SUBJECT SPECIFIED)">Non-criminal</option>
+                                    <option data-type='other' value="OBSCENITY">Obscenity</option>
+                                    <option data-type='other' value="OTHER OFFENSE">Other offense</option>
+                                    <option data-type='other' value="OTHER NARCOTIC VIOLATION">Other narcotic violation</option>
+                                    <option data-type='other' value="PUBLIC INDECENCY">Public indecency</option>
+                                    <option data-type='other' value="PUBLIC PEACE VIOLATION">Public peace violation</option>
+                                    <option data-type='other' value="RITUALISM">Ritualism</option>
+                                    <option data-type='other' value="SEX OFFENSE">Sex offense</option>
+                                    <option data-type='other' value="STALKING">Stalking</option>
+                                    <option data-type='other' value="WEAPONS VIOLATION">Weapons violation</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        </div>
+
+                        <div class="panel-group col-sm-12" id="accordion-advanced">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion-advanced" href="#collapse-advanced">
+                                <i class='fa fa-plus-circle'></i>
+                                  More filters &hellip;
+                                </a>
+                              </h4>
+                            </div>
+                            <div id="collapse-advanced" class="panel-collapse collapse in">
+                              <div class="panel-body">
+
+                                <div class="form-group col-sm-11">
+                                    <label for="time-slider">
+                                        <i class='fa fa-clock-o'></i>
+                                        Hour of day:
+                                    </label>
+                                    <span>
+                                        <span id="time-start" data-value="0">12am</span>
+                                        —
+                                        <span id="time-end" data-value="23">11pm</span>
+                                    </span>
+                                    <div id="time-slider"></div>
+                                </div>
+
+                                <div class="form-group col-sm-12">
+                                    <label for='crime-location'>
+                                        <i class='fa fa-map-marker'></i>
+                                        Location description
+                                    </label>
+                                    <select id="crime-location" data-placeholder="All location descriptions" class="select2 form-control" multiple></select>
+                                </div>
+
+                                <div class="form-group col-sm-12">
+                                    <label for='police-beat'>
+                                        <i class='fa fa-map-marker'></i>
+                                        Police beat
+                                    </label>
+                                    <div id="beat-filters"></div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label for='community-area'>
+                                        <i class='fa fa-map-marker'></i>
+                                        Community area
+                                    </label>
+                                    <div id="comm-area-filters"></div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class='form-group col-sm-12'>
+                            <div class='pull-left'>
+                                <a href='#' id="submit-query" class="btn btn-primary"><i class='fa fa-search'></i> Search</a>
+                                <a href='#' id="reset" class="btn btn-info" data-toggle="tooltip" title="Reset all filters"><i class='fa fa-undo'></i></a>
+                                <a href='#' id='remember' class='btn btn-default' data-toggle="tooltip" title="Remember this search"><i class="fa fa-star-o"></i></a>
+                            </div>
+                            <div class='pull-right'>
+                                <a href='#' id='report' class='btn btn-default' data-toggle="tooltip" title="Download data as spreadsheet (XLS)"><i class="fa fa-table"></i></a>
+                                <a href='#' id='print' class='btn btn-default' data-toggle="tooltip" title="Printable PDF"><i class="fa fa-print"></i></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class='col-md-8'>
+            <div id="map"></div>
+            <small class='pull-right'>
+                &copy; <a href='http://www.lisc-chicago.org'>LISC Chicago</a> and <a href='http://datamade.us'>DataMade</a> |
+                Hosted by <a href="http://www.smartchicagocollaborative.org/">Smart Chicago Collaborative</a>
+            </small>
+        </div>
+
+        <!-- Core libraries -->
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/moment.min.js"></script>
+        <script src="/js/ejs_production.js"></script>
+
+        <!-- Map libraries -->
         <script src="http://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.js"></script>
         <script src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.js'></script>
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.css" />
-        <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.css" />
+        <script src="/js/leaflet.label.js"></script>
 
-        <link rel="stylesheet" href="foundation/stylesheets/foundation.min.css">
-        <link rel="stylesheet" href="foundation/stylesheets/general_foundicons.css">
-        <link rel="stylesheet" href="css/chosen.min.css">
-        <link rel="stylesheet" href="foundation/stylesheets/app.css">
-        <link rel="stylesheet" href="foundation/stylesheets/print.css" media="print" />
-        <!--[if lte IE 8]>
-            <link rel="stylesheet" href="/css/leaflet.ie.css" />
-            <link rel="stylesheet" href="/css/leaflet.draw.ie.css" />
-        <![endif]-->
-    </head>
-    <body>
-        <div class="fixed">
-            <nav class="top-bar">
-                <ul>
-                    <li class="name"><h1><a href="/">crimearound.us</a></h1></li>
-                </ul>
-                <section>
-                    <ul class="right" id="right-nav">
-                        <li><a href="/about.html"><i class="fa fa-info-circle"></i> About</a></li>
-                        <li><a href="/help.html"><i class="fa fa-question-circle"></i> Help</a></li>
-                    </ul>
-                </section>
-            </nav>
-        </div>
-        <div id="mapinfo" class="three columns full-height">
-            <h4 class="light">Search crime in your area</h4>
-            <p>Draw on the map or <a href='/help.html'>use the filters below</a>.</p>
-            <hr />
-            <div id="filters">
-                <form>
-                    <fieldset>
-                        <legend><i class="fa fa-calendar-o"></i> Date &amp; time</legend>
-                        <div class="date-wrapper">
-                            <label for="start">Start Date</label>
-                            <input id="start" class="date-filter start" type="text" placeholder="Start Date"/>
-                        </div>
-                        <div class="date-wrapper">
-                            <label for="end">End Date</label>
-                            <input id="end" class="date-filter end" type="text" placeholder="End Date"/>
-                        </div>
-                        <p>
-                        Hour of day:
-                        <span>
-                            <span id="time-start" data-value="0">12am</span>
-                            —
-                            <span id="time-end" data-value="23">11pm</span>
-                        </span>
-                        <div id="time-slider"></div>
-                        </p>
-                    </fieldset>
-                    <fieldset>
-                        <legend>Crime</legend>
-                        <select id="crime-type" data-placeholder="Crime type ..." class="chosen-select" multiple>
-                            <option value=""></option>
-                            <optgroup label="Violent">
-                                <option value="ASSAULT">Assault</option>
-                                <option value="BATTERY">Battery</option>
-                                <option value="CRIM SEXUAL ASSAULT">Criminal sexual assault</option>
-                                <option value="HOMICIDE">Homicide</option>
-                                <option value="ROBBERY">Robbery</option>
-                            </optgroup>
-                            <optgroup label="Property">
-                                <option value="ARSON">Arson</option>
-                                <option value="BURGLARY">Burglary</option>
-                                <option value="MOTOR VEHICLE THEFT">Motor vehicle theft</option>
-                                <option value="THEFT">Theft</option>
-                            </optgroup>
-                            <optgroup label="Quality of Life">
-                                <option value="CRIMINAL DAMAGE">Criminal damage</option>
-                                <option value="NARCOTICS">Narcotics</option>
-                                <option value="PROSTITUTION">Prostitution</option>
-                            </optgroup>
-                            <optgroup label="Other">
-                                <option value="CRIMINAL TRESPASS">Criminal trespass</option>
-                                <option value="DECEPTIVE PRACTICE">Deceptive practice</option>
-                                <option value="GAMBLING">Gambling</option>
-                                <option value="INTERFERE WITH PUBLIC OFFICER,INTERFERENCE WITH PUBLIC OFFICER">Interference with a public officer</option>
-                                <option value="INTIMIDATION">Intimidation</option>
-                                <option value="KIDNAPPING">Kidnapping</option>
-                                <option value="LIQUOR LAW VIOLATION">Liquor law violation</option>
-                                <option value="NON-CRIMINAL,NON-CRIMINAL (SUBJECT SPECIFIED)">Non-criminal</option>
-                                <option value="OBSCENITY">Obscenity</option>
-                                <option value="OTHER OFFENSE">Other offense</option>
-                                <option value="OTHER NARCOTIC VIOLATION">Other narcotic violation</option>
-                                <option value="PUBLIC INDECENCY">Public indecency</option>
-                                <option value="PUBLIC PEACE VIOLATION">Public peace violation</option>
-                                <option value="RITUALISM">Ritualism</option>
-                                <option value="SEX OFFENSE">Sex offense</option>
-                                <option value="STALKING">Stalking</option>
-                                <option value="WEAPONS VIOLATION">Weapons violation</option>
-                            </optgroup>
-                        </select>
-                    </fieldset>
-                    <fieldset id="beat-filters">
-                        <legend>Location</legend>
-                        <select id="crime-location" data-placeholder="Location type ..." class="chosen-select" multiple>
-                            <option value="airport">Airport</option>
-                            <option value="business_banking">Business - Banking</option>
-                            <option value="business_eatery">Business - Eatery</option>
-                            <option value="business_hotel_motel">Business - Hotel/Motel</option>
-                            <option value="business_liquor">Business - Liquor</option>
-                            <option value="business_office">Business - Office</option>
-                            <option value="business_retail">Business - Retail</option>
-                            <option value="cha">Chicago Housing Authority Property</option>
-                            <option value="cta">Chicago Transit Authority Property</option>
-                            <option value="gov">Government Property</option>
-                            <option value="hospital">Hospital/Nursing Home</option>
-                            <option value="library">Library</option>
-                            <option value="indoors_residence">Indoors - Residence</option>
-                            <option value="other">Other</option>
-                            <option value="outdoors_public">Outdoors - Public</option>
-                            <option value="outdoors_residence">Outdoors - Residence</option>
-                            <option value="worship">Place of Worship</option>
-                            <option value="school">School</option>
-                            <option value="transportation">Transportation</option>
-                            <option value="vacant">Vacant Property</option>
-                            <option value="vehicle">Vehicle</option>
-                        </select>
-                        <br /><br />
-                    </fieldset>
-                    <ul id="form-controls" class="button-group radius even two-up">
-                        <li><a href="javascript://" id="submit-query" class="button radius">Search</a></li>
-                        <li><a href="javascript://" id="reset" class="button radius alert">Reset</a></li>
-                    </ul>
-                    <p>
-                        <span id="remember" class="light" style="display:none;">
-                            <i class="fa fa-save"></i>
-                            <a href="javascript://">Remember search</a>
-                        </span>
-                        <span id="report" class="light" style="display:none;">
-                            |
-                            <i class="fa fa-download"></i>
-                            <a href="javascript://">Download</a>
-                        </span>
-                        <span id="print" class="light" style="display:none;">
-                            |
-                            <i class="fa fa-print"></i>
-                            <a href="javascript://">Print</a>
-                        </span>
-                    </p>
-                  </ul>
-                </form>
-            </div>
-            <hr />
-            <div id="meta">
-              <p>
-                &copy; <a href='http://www.lisc-chicago.org'>LISC Chicago</a> and <a href='http://datamade.us'>DataMade</a><br />
-                Hosted by <a href="http://www.smartchicagocollaborative.org/">Smart Chicago Collaborative</a>
-                </p>
-            </div>
-        </div>
-        <div id="map" class="nine columns full-height"></div>
-        <div id="report-modal" class="reveal-modal small">
-            <h2 class="light">Oops, slight problem</h2>
-            <p class="lead">You need to give me something to work with</p>
-            <p>Before I can generate a report, I need you to specify what you want me to report
-            on by drawing a shape on the map.</p>
-            <a href="javascript://" class="close-reveal-modal">&#215;</a>
-        </div>
-        <div id="date-error" class="reveal-modal small">
-            <h2 class="light">Oops, slight problem</h2>
-            <p class="lead">At least one of your dates isn’t formatted correctly.
-            The date fields down at the bottom of the map expect dates formatted like this:
-            <strong>YYYY-MM-DD</strong></p>
-            <a href="javascript://" class="close-reveal-modal">&#215;</a>
-        </div>
-        <div id="time-error" class="reveal-modal small">
-            <h2 class="light">Oops, slight problem</h2>
-            <p class="lead">It looks like the time of day range that you specified has a start time
-            that occurs after the end time. Please correct this and try again.</p>
-            <a href="javascript://" class="close-reveal-modal">&#215;</a>
-        </div>
-        <div id="shape-error" class="reveal-modal small">
-            <h2 class="light">Oops, slight problem</h2>
-            <p class="lead">
-                Before we can run your query, you’ll need to make sure to draw
-                a shape on the map using the tools on the left-hand side.
-            </p>
-            <a href="javascript://" class="close-reveal-modal">&#215;</a>
-        </div>
-        <script src="//d3nslu0hdya83q.cloudfront.net/dist/1.0/raven.min.js"></script>
+        <!-- Jquery libraries -->
+        <script src="/js/daterangepicker.js"></script>
+        <script src="/js/jquery-ui.min.js"></script>
+        <script src="/js/jquery.cookie.js"></script>
+        <script src="/js/select2.min.js"></script>
+        <script src="/js/spin.min.js"></script>
+        <script src="/js/jquery.spin.js"></script>
+        <script src="/js/jquery.fileDownload.js"></script>
+
+        <!-- Data -->
+        <script src="/data/police_beats.js"></script>
+        <script src="/data/community_areas.js"></script>
+
+        <!-- App -->
+        <script src="/js/app.js"></script>
+
+        <!-- Analytics libraries -->
+        <script src="/js/jquery.ba-hashchange.js"></script>
+        <script src="/js/analytics_lib.js"></script>
+
         <script>
-            Raven.config('https://0b2a28d91b324689b12ca36f747af10e@app.getsentry.com/8349').install();
+            if ($.cookie("show-intro") != "read") {
+              $('#collapse-intro').collapse('show');
+              $.cookie("show-intro", "read", { expires: 7 });
+            }
+
+            $('#dismiss-intro').click(function(){
+              $('#collapse-intro').collapse('hide');
+            });
+
+            $('#collapse-advanced').on('hide.bs.collapse', function () {
+              $("#accordion-advanced .panel-title i").attr('class', 'fa fa-plus-circle');
+            });
+
+            $('#collapse-advanced').on('show.bs.collapse', function () {
+              $("#accordion-advanced .panel-title i").attr('class', 'fa fa-minus-circle');
+            });
         </script>
-        <script src="foundation/javascripts/foundation.min.js"></script>
-        <script src="foundation/javascripts/app.js"></script>
-        <script src="js/jquery-ui.min.js"></script>
-        <script src="js/jquery.cookie.js"></script>
-        <script src="js/chosen.jquery.min.js"></script>
-        <script src="js/ejs_production.js"></script>
-        <script src="js/moment.min.js"></script>
-        <script src="js/spin.min.js"></script>
-        <script src="js/jquery.spin.js"></script>
-        <script src="js/jquery.fileDownload.js"></script>
-        <script src="js/map.js?2"></script>
-        <script src="js/jquery.ba-hashchange.js"></script>
-        <script src="js/analytics_lib.js"></script>
+        <script>
+            $("[data-toggle=tooltip]").tooltip();
+        </script>
     </body>
 </html>

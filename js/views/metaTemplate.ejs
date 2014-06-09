@@ -1,15 +1,13 @@
-<div class="twelve columns">
-  <h3 class='light'>Crime reports</h3>
-</div>
-<div class="twelve columns">
-    <h5 class='light'><strong class="violent"><%= typeof violent !== 'undefined' ? violent : 0 %></strong> Violent</h5>
-</div>
-<div class="twelve columns">
-    <h5 class='light'><strong class="property"><%= typeof property !== 'undefined' ? property : 0 %></strong> Property</h5>
-</div>
-<div class="twelve columns">
-    <h5 class='light'><strong class="quality-of-life"><%= typeof quality !== 'undefined' ? quality : 0 %></strong> Quality of life</h5>
-</div>
-<div class="twelve columns">
-    <h5 class='light'><strong class='other'><%= typeof other !== 'undefined' ? other : 0 %></strong> Other</h5>
-</div>
+<h1><strong>Crime reports</strong><br />
+  <%= start_date %> - <%= end_date %>
+</h1>
+
+<p>
+  <strong class="violent"><%= typeof totals_by_type.violent !== 'undefined' ? totals_by_type.violent : 0 %></strong> Violent
+  <br />
+  <strong class="property"><%= typeof totals_by_type.property !== 'undefined' ? totals_by_type.property : 0 %></strong> Property
+  <br />
+  <strong class="quality"><%= typeof totals_by_type.quality !== 'undefined' ? totals_by_type.quality : 0 %></strong> Quality of life
+  <br />
+  <strong class='other'><%= typeof totals_by_type.other !== 'undefined' ? totals_by_type.other : 0 %></strong> Other
+</p>

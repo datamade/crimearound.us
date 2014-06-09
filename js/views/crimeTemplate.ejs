@@ -1,37 +1,53 @@
-<p><%= moment(orig_date).format('dddd MMM D, YYYY h:mma') %></p>
-<h3><%= primary_type %><br /><span class="light"><%= typeof description !== 'undefined' ? description : '' %></span></h3>
+<strong class=<%= crime_type %>><a href="help.html#<%= fbi_code %>"><%= primary_type %> - <%= description %></a></strong>
 <p>
-<strong><%= block.replace("XX", "00").replace("0X", "00") %></strong> <br />
-<%= typeof location_description !== 'undefined' ? location_description : '' %>
+    <i class="fa fa-calendar"></i> <%= moment(orig_date).format('dddd MMM D, YYYY') %><br />
+    <i class="fa fa-clock-o"></i> <%= moment(orig_date).format('h:mma') %>
+</p>
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <td>
+                Arrest? 
+                <% if(arrest == 'true' || arrest == true){ %> 
+                    <i class='fa fa-check'></i>
+                    Yes
+                <% } else { %> 
+                    <i class='fa fa-times'></i>
+                    No
+                <% } %> 
+            </td>
+            <td>
+                Domestic?
+                <% if(domestic == 'true' || domestic == true){ %> 
+                    <i class='fa fa-check'></i>
+                    Yes
+                <% } else { %> 
+                    <i class='fa fa-times'></i>
+                    No
+                <% } %>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>
+<i class="fa fa-map-marker"></i>
+<strong><%= block.replace("XX", "00").replace("0X", "00").replace(/^0+/, '') %></strong><br />
+<em><%= typeof location_description !== 'undefined' ? location_description : '' %></em>
 </p>
 
-<table class="twelve">
+<table class="table table-bordered">
     <thead>
         <tr>
+            <th>Community</th>
             <th>Ward</th>
-            <th>Beat</th>
-            <th>Arrest?</th>
-            <th>Domestic?</th>
+            <th>Police beat</th>
         </tr>
     </thead>
     <tbody>
         <tr>
+            <td><%= typeof community_area_name !== 'undefined' ? community_area_name : '' %></td>
             <td><%= typeof ward !== 'undefined' ? ward : '' %></td>
             <td><%= typeof beat !== 'undefined' ? beat : '' %></td>
-            <td>
-                <% if(arrest == 'true' || arrest == true){ %> 
-                    Yes
-                <% } else { %> 
-                    No
-                <% } %> 
-            </td>
-            <td>
-                <% if(domestic == 'true' || domestic == true){ %> 
-                    Yes
-                <% } else { %> 
-                    No
-                <% } %> 
-            </td>
         </tr>
     </tbody>
 </table>

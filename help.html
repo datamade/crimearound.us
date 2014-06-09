@@ -1,40 +1,269 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>crimearound.us | Help</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <title>CrimeAround.us - Help</title>
 
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="foundation/stylesheets/foundation.min.css">
-        <link rel="stylesheet" href="foundation/stylesheets/app.css">
-        <link rel="stylesheet" href="foundation/stylesheets/general_foundicons.css">
-    </head>
-    <body>
-        <div class="fixed">
-            <nav class="top-bar">
-                <ul>
-                    <li class="name"><h1><a href="/">crimearound.us</a></h1></li>
-                </ul>
-                <section>
-                    <ul class="right">
-                        <li><a href="/about.html"><i class="fa fa-info-circle"></i> About</a></li>
-                        <li><a href="/help.html"><i class="fa fa-question-circle"></i> Help</a></li>
-                    </ul>
-                </section>
-            </nav>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/chosen.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><i class='fa fa-star'></i> CrimeAround.us</a>
         </div>
-        <div class="row">
-            <div class="ten columns centered about">
-                <h2 class="light">Help</h2>
-                <h3 id='drawing-on-the-map'>Drawing on the map</h3>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav pull-right">
+            <li><a href="/about.html"><i class="fa fa-info-circle"></i> About</a></li>
+            <li><a href="/faq.html"><i class="fa fa-question-circle"></i> FAQ</a></li>
+            <li><a href="/help.html"><i class="fa fa-question-circle"></i> Help</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+        <div class='row'>
+            <div class='col-md-8'>
+                <h2><i class='fa fa-question-circle'></i> Help</h2>
+
+                <div class='well'>
+                    <ul class='list-unstyled'>
+                        <li>
+                            <a href='#filters'>Filtering your search</a>
+                            <ul>
+                                <li><a href='#date-reported'>Date reported</a></li>
+                                <li><a href='#crime-type'>Crime type</a></li>
+                                <li><a href='#advanced'>Advanced filters</a></li>
+                            </ul>
+                        </li>
+                        <li><a href='#drawing-on-the-map'>Drawing an area to search</a></li>
+                        <li><a href='#remember-search'>Remember this search</a></li>
+                        <li><a href='#download-search'>Download data as a spreadsheet (XLS)</a></li>
+                        <li><a href='#print'>Printable PDF</a></li>
+                    </ul>
+                </div>
+
+                <h3 id='filters'>Filtering your search</h3>
+                <p>
+                    CrimeAround.us allows you to filter on different crime report attributes.
+                </p>
+
+                <h4 id='date-reported'><i class='fa fa-calendar'></i> Date reported</h4>
+                <p>The date the crime occurred. We have reports going back to Jan 1st, 2001. Be warned, searching over multiple years may take a while to process.</p>
+
+                <h4 id='crime-type'><i class='fa fa-navicon'></i> Crime type</h4>
+                <p>Each crime is classified as one of 30 different types, such as <a href='/#date__lte=1391666399&date__gte=1390975200&primary_type=ASSAULT'>Assault</a>, <a href='/#date__lte=1391666399&date__gte=1390975200&primary_type=NARCOTICS'>Narcotics</a>, or <a href='/#date__lte=1391666399&date__gte=1357020000&primary_type=PROSTITUTION'>Prostitution</a>. For more detail, see the <a href='http://gis.chicagopolice.org/clearmap/crime_types.html'>full definition list</a> on the Chicago Police Department ClearPath website.</p>
+
+                <p>Also, for each incident, multiple offenses can be reported, but the data we get only reveals most serious offense.</p>
+
+                <p>We also group crime types in to <strong class='violent'>violent crimes</strong>, <strong class='property'>property crimes</strong> and <strong class='quality'>quality of life crimes</strong> in the same way that the <a href='http://crime.chicagotribune.com/chicago/faq#community-type-definition'>Chicago Tribune does</a>. In order to accomodate all of the other categories of crime that these three buckets do not cover, we also added an <strong class="other">other</strong> category.</p>
+
+                <table id="iucr-table" class="table">
+                    <thead id="crime-header">
+                        <tr>
+                            <th>Group</th>
+                            <th>Crime Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Violent</td>
+                            <td class='violent'>Assault</td>
+                            <td>
+                                <p><strong>Simple</strong> An unlawful physical attack by one person upon another where neither the offender displays a weapon, nor the victim suffers obvious severe or aggravated bodily injury involving apparent broken bones, loss of teeth, possible internal injury, severe laceration, or loss of consciousness.</p>
+
+                                <p><strong>Aggravated</strong> An unlawful attack by one person upon another wherein the offender displays a weapon in a threatening manner. Placing someone in reasonable apprehension of receiving a battery.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Violent</td>
+                            <td class='violent'>Battery</td>
+                            <td>
+                                <p><strong>Simple</strong> A person commits battery if he intentionally or knowingly without legal justification and by any means, (1) causes bodily harm to an individual or (2) makes physical contact of an insulting or provoking nature with an individual.</p>
+
+                                <p><strong>Aggravated</strong> An unlawful attack by one person upon another wherein the offender uses a weapon or the victim suffers obvious severe or aggravated bodily injury involving apparent broken bones, loss of teeth, possible internal injury, severe laceration, or loss of consciousness.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Violent</td>
+                            <td class='violent'>Criminal sexual assault</td>
+                            <td>Any sexual act directed against another person, forcibly and/or against that person's will or not forcibly or against the person's will in instances where the victim is incapable of giving consent.</td>
+                        </tr>
+                        <tr>
+                            <td>Violent</td>
+                            <td class='violent'>Homicide</td>
+                            <td>The killing of one human being by another.</td>
+                        </tr>
+                        <tr>
+                            <td>Violent</td>
+                            <td class='violent'>Robbery</td>
+                            <td>The taking or attempting to take anything of value under confrontational circumstances from the control, custody, or care of another person by force or threat of force or violence and/or by putting the victim in fear of immediate harm.</td>
+                        </tr>
+                        <tr>
+                            <td>Property</td>
+                            <td class='property'>Arson</td>
+                            <td>To unlawfully and intentionally damage or attempt to damage any real or personal property by fire or incendiary device.</td>
+                        </tr>
+                        <tr>
+                            <td>Property</td>
+                            <td class='property'>Burglary</td>
+                            <td>The unlawful entry into a building or other structure with the intent to commit a felony or a theft.</td>
+                        </tr>
+                        <tr>
+                            <td>Property</td>
+                            <td class='property'>Motor vehicle theft</td>
+                            <td>The theft of a motor vehicle.</td>
+                        </tr>
+                        <tr>
+                            <td>Property</td>
+                            <td class='property'>Theft</td>
+                            <td>The unlawful taking, carrying, leading, or riding away of property from the possession or constructive possession of another person.</td>
+                        </tr>
+                        <tr>
+                            <td>Quality of Life</td>
+                            <td class='quality'>Criminal damage</td>
+                            <td>To willfully or maliciously destroy, damage, deface, or otherwise injure real or personal property without the consent of the owner or the person having custody or control of it.</td>
+                        </tr>
+                        <tr>
+                            <td>Quality of Life</td>
+                            <td class='quality'>Narcotics</td>
+                            <td>The violation of laws prohibiting the production, distribution, and/or use of certain controlled substances and the equipment or devices utilized in their preparation and/or use.</td>
+                        </tr>
+                        <tr>
+                            <td>Quality of Life</td>
+                            <td class='quality'>Prostitution</td>
+                            <td>To unlawfully engage in or promote sexual activities for profit.</td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Criminal trespass</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Deceptive practice</td>
+                            <td>The intentional perversion of the truth for the purpose of inducing another person or other entity in reliance upon it to part with something of value or to surrender a legal right.</td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Gambling</td>
+                            <td>To unlawfully bet or wager money or something else of value; assist, promote, or operate a game of chance for money or some other stake; possess or transmit wagering information; manufacture, sell, purchase, possess, or transport gambling equipment, devices, or goods; or tamper with the outcome of a sporting event or contest to gain a gambling advantage.</td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Interference with a public officer</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Intimidation</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Kidnapping</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Liquor law violation</td>
+                            <td>The violation of laws or ordinances prohibiting the manufacture, sale, purchase, transportation, possession, or use of alcoholic beverages.</td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Non-criminal</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Obscenity</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Other offense</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Other narcotic violation</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Public indecency</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Public peace violation</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Ritualism</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Sex offense</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Stalking</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td class='other'>Weapons violation</td>
+                            <td>The violation of laws or ordinances prohibiting the manufacture, sale, purchase, transportation, possession, concealment, or use of firearms, cutting instruments, explosives, incendiary devices, or other deadly weapons.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr />
+                <h3 id='advanced'>Advanced filters</h3>
+
+                <h4 id='hour-of-day'><i class='fa fa-clock-o'></i> Hour of day</h4>
+                <p>We can group crimes by the time of day it happened. Use the slider to select the range of hours that you are interested in.</p>
+
+                <h4 id='location-description'><i class='fa fa-map-marker'></i> Location description</h4>
+                <p>Crimes can be filtered by location description as well. This includes places like <a href='/#date__lte=1391666399&date__gte=1390975200&location_description=business_liquor'>Liquor stores</a>, <a href='/#date__lte=1391666399&date__gte=1390975200&location_description=cta'>CTA stations</a> and <a href='/#date__lte=1391666399&date__gte=1390975200&location_description=outdoors_public%2Coutdoors_residence'>streets</a>.</p>
+
+                <h4 id='police-beat'><i class='fa fa-map-marker'></i> Police beat</h4>
+                <p>The Chicago Police Department divides the city in to <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts'>22 districts</a>, which are then divided in to a number of police beats made up of several city blocks. We provide the ability to filter crime by police beat.</p>
+
+                <p><img class='img-responsive' src='/images/beat_0314.png' alt='Beat 0111' /></p>
+
+                <hr />
+                <h3 id='drawing-on-the-map'>Drawing an area to search</h3>
                 <p>
                     Using the tools on the left side of the map,
                     you can draw a custom shape on the map to define the area that
@@ -42,80 +271,61 @@
                 </p>
 
                 <div class="row">
-                  <div class="four columns">
+                  <div class="col-md-4">
                     <img src='/images/map_drawing_1.png' alt='' />
                     <br />1. Select the shape or box tool on the left side of the map
                   </div>
-                  <div class="four columns">
+                  <div class="col-md-4">
                     <img src='/images/map_drawing_2.png' alt='' />
                     <br />2. Click on the points on the map to bound your box
                   </div>
-                  <div class="four columns">
+                  <div class="col-md-4">
                     <img src='/images/map_drawing_3.png' alt='' />
-                    <br />3. When done, click the <strong>search</strong> button and see your results
+                    <br />3. As soon as your shape is created, you will see your results
                   </div>
                 </div>
 
                 <hr />
-                <h3 id='filters'>Filters</h3>
-                <p>
-                    In addition to drawing on the map, you can filter on different crime attributes.
-
-                    <img src='/images/filters.png' alt='Search filters' />
-                </p>
-
-                <h4>Date &amp; time</h4>
-                <p>The date the crime occurred. We have reports going back to Jan 1st, 2001. Be warned, searching over multiple years may take a while to process.</p>
-
-                <h4>Time of day</h4>
-                <p>We can group crimes by the time of day it happened. Use the slider to select the range of hours that you are interested in.</p>
-
-                <h4>Crime type</h4>
-                <p>Each crime is classified as one of 30 different types, such as <a href='/#date__lte=1391666399&date__gte=1390975200&primary_type=ASSAULT'>Assault</a>, <a href='/#date__lte=1391666399&date__gte=1390975200&primary_type=NARCOTICS'>Narcotics</a>, or <a href='/#date__lte=1391666399&date__gte=1357020000&primary_type=PROSTITUTION'>Prostitution</a>. For more detail, see the <a href='http://gis.chicagopolice.org/clearmap/crime_types.html'>full definition list</a> on the Chicago Police Department ClearPath website.</p>
-
-                <p>Also, for each incident, multiple offenses can be reported, but the data we get only reveals most serious offense.</p>
-
-                <p>We also group crime types in to <strong class='violent'>violent crimes</strong>, <strong class='property'>property crimes</strong> and <strong class='quality-of-life'>quality of life crimes</strong> in the same way that the <a href='http://crime.chicagotribune.com/chicago/faq#community-type-definition'>Chicago Tribune does</a>. In order to accomodate all of the other categories of crime that these three buckets do not cover, we also added an <strong class="other">other</strong> category.</p>
-                <ul>
-                    <li><strong class='violent'>Violent crimes</strong> - assault, battery, homicide, robbery, sexual assault</li>
-                    <li><strong class='property'>Property crimes</strong> - arson, burglary, motor vehicle theft, theft</li>
-                    <li><strong class='quality-of-life'>Quality of life crimes</strong> - criminal damage, narcotics, prostitution</li>
-                    <li><strong class='other'>Other crimes</strong> - criminal trespass, deceptive practice, gambling, interference with a public officer, intimidation, kidnapping, liquor law violation, non-criminal, obscenity, other offense, other narcotic violation, public indecency, public peace violation, ritualism, sex offense, stalking, weapons violation</li>
-                </ul>
-
-                <h4>Location type</h4>
-                <p>Crimes can be filtered by location description as well. This includes places like <a href='/#date__lte=1391666399&date__gte=1390975200&location_description=business_liquor'>Liquor stores</a>, <a href='/#date__lte=1391666399&date__gte=1390975200&location_description=cta'>CTA stations</a> and <a href='/#date__lte=1391666399&date__gte=1390975200&location_description=outdoors_public%2Coutdoors_residence'>streets</a>.</p>
-
-                <h4>Police beat</h4>
-                <p>The Chicago Police Department divides the city in to <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath/Communities/Districts'>22 districts</a>, which are then divided in to a number of police beats made up of several city blocks. We provide the ability to filter crime by police beat.</p>
-
-                <p><img src='/images/beat_0111.png' alt='Beat 0111' /></p>
-
-                <hr />
-                <h3 id='remember-your-search'>Remember your search</h3>
+                <h3 id='remember-search'><i class='fa fa-star'></i> Remember this search</h3>
                 <p>
                     If you’re interested in saving the results of your search to review at a later time, use the
-                    <a class='light'>Remember Search</a> link to add a menu item where you can easily reload your
+                    <a>Remember Search</a> link to add a menu item where you can easily reload your
                     results later.
                 </p>
-                    <img src='/images/remember.png' alt='Remember Your Search' />
-                <h3 id='download-your-search'>Download your search</h3>
+                <p>
+                    <img class='img-responsive' src='/images/remember_click.png' alt='Remember Your Search' />
+                    <img class='img-responsive' src='/images/remember.png' alt='Remember Your Search' />
+                </p>
+                <h3 id='download-search'><i class='fa fa-table'></i> Download data as a spreadsheet (XLS)</h3>
                 <p>
                     If you’re interested in downloading the crime data you’re
                     searched for, you can use the
-                    <a class='light'>Download</a> link to download the data as an Excel spreadsheet.
+                    <a>Download</a> link to download the data as an Excel spreadsheet.
                 </p>
-                <h3 id='print-your-search'>Print your search</h3>
+                <h3 id='print'><i class='fa fa-print'></i> Printable PDF</h3>
                 <p>
                     If you’re interested in printing out the results of your search, click the
-                    <a class='light'>Print</a> link to download a PDF of your search that is suitable for printing.
+                    <a>Print</a> link to download a PDF of your search that is suitable for printing.
                 </p>
             </div>
         </div>
-        <script src="foundation/javascripts/foundation.min.js"></script>
-        <script src="foundation/javascripts/app.js"></script>
+    </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/ejs_production.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
 
-        <script src="js/jquery.ba-hashchange.js"></script>
-        <script src="js/analytics_lib.js"></script>
+
+    <script src="js/jquery.ba-hashchange.js"></script>
+    <script src="js/analytics_lib.js"></script>
+    <script src="js/jquery.stickytableheaders.min.js"></script>
+    <script type="text/javascript">
+        $(window).load(function(){
+            $('#iucr-table').stickyTableHeaders();
+            if(typeof window.location.hash !== 'undefined'){
+                window.scrollBy(0, -65);
+            }
+        })
+    </script>
     </body>
 </html>
