@@ -21,7 +21,7 @@ var map;
     var default_view = false;
     var cookiename = 'crimearound_us_v2'
     var endpoint = 'http://api.crimearound.us';
-    //var endpoint = 'http://127.0.0.1:5000';
+    // var endpoint = 'http://33.33.33.66:5000';
 
     var colors = [
        '#377eb8',
@@ -307,6 +307,8 @@ var map;
         }
 
         $.when(get_results(query)).then(function(resp){
+            beats.clearLayers();
+            community_areas_group.clearLayers();
             if (typeof query.beat__in !== 'undefined'){
                 add_beats(query.beat__in.split(','));
             }
@@ -328,7 +330,6 @@ var map;
     }
 
     function add_beats(b){
-        beats.clearLayers();
         $.each(b, function(i, beat){
             $.getJSON('/data/beats/' + beat + '.geojson', function(geo){
                 beats.addLayer(L.geoJson(geo, {
@@ -348,7 +349,6 @@ var map;
     }
 
     function add_community_areas(areas){
-        community_areas_group.clearLayers();
         $.each(areas, function(i, area){
             if(area.length < 2){
                 area = '0' + area
@@ -445,7 +445,6 @@ var map;
 
         $('#date_range').data('daterangepicker').setStartDate(start_date);
         $('#date_range').data('daterangepicker').setEndDate(end_date);
-
         if(typeof query['beat__in'] !== 'undefined'){
             $.each(query['beat__in'].split(','), function(i, beat){
                 $('#police-beat').find('[value="' + beat + '"]').attr('selected', 'selected');
@@ -476,6 +475,8 @@ var map;
             $('#time-slider').slider('values', 0, s);
             $('#time-slider').slider('values', 1, e);
         }
+        beats.clearLayers();
+        community_areas_group.clearLayers();
         if (typeof query['beat__in'] !== 'undefined'){
             add_beats(query['beat__in'].split(','));
         }
