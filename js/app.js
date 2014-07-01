@@ -419,9 +419,8 @@ var map;
 
     function reload_state(query, resp){
         $('#map').spin(false);
-        var location = $.parseJSON(resp['meta']['query']['location_geom__within']);
-        console.log(location)
-        if (typeof location !== 'undefined'){
+        if (typeof resp['meta']['query']['location_geom__within'] !== 'undefined'){
+            var location = $.parseJSON(resp['meta']['query']['location_geom__within']);
             var shape_opts = {
                 stroke: true,
                 color: '#f06eaa',
@@ -438,7 +437,6 @@ var map;
             });
             drawnItems.addLayer(geo);
         }
-
         start_date = moment(query['obs_date__ge']);
         end_date = moment(query['obs_date__le']);
         update_date_range();
