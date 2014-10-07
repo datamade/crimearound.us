@@ -255,7 +255,7 @@ var map;
     function submit_search(){
         $('#remember i').attr('class', 'fa fa-star-o');
         $('#map').spin('large');
-        var query = {'dataset_name': 'chicago_crimes_all'};
+        var query = {};
         var layers = drawnItems.getLayers();
         if (layers.length > 0){
             drawnItems.eachLayer(function(layer){
@@ -276,8 +276,8 @@ var map;
         query['obs_date__le'] = end_date.format('YYYY/MM/DD');
         var time_start = $('#time-start').data('value');
         var time_end = $('#time-end').data('value');
-        query['orig_date__time_of_day_ge'] = time_start;
-        query['orig_date__time_of_day_le'] = time_end;
+        query['date__time_of_day_ge'] = time_start;
+        query['date__time_of_day_le'] = time_end;
         if($('#crime-type').val()){
             var types = []
             $.each($('#crime-type').val(), function(i, type){
@@ -461,9 +461,9 @@ var map;
             });
             $('#crime-location').trigger('change');
         }
-        if(typeof query['orig_date__time_of_day_le'] !== 'undefined'){
-            var s = query['orig_date__time_of_day_ge'];
-            var e = query['orig_date__time_of_day_le'];
+        if(typeof query['date__time_of_day_le'] !== 'undefined'){
+            var s = query['date__time_of_day_ge'];
+            var e = query['date__time_of_day_le'];
             var start = convertTime(s);
             var end = convertTime(e);
             $('#time-start').html(start);
@@ -550,7 +550,7 @@ var map;
         var pop_content = crime_template.render(props);
 
         var hoverText = feature.properties['primary_type'] + " - " + feature.properties['description'] + "\
-                        <br />" + moment(feature.properties['orig_date']).format('MMM D, YYYY h:mma');
+                        <br />" + moment(feature.properties['date']).format('MMM D, YYYY h:mma');
         layer.bindLabel(hoverText);
         layer.bindPopup(pop_content, {
             closeButton: true,
