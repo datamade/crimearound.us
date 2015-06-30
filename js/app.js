@@ -21,7 +21,7 @@ var map;
     var default_view = false;
     var cookiename = 'crimearound_us_v2'
     var endpoint = 'http://api.crimearound.us';
-    // var endpoint = 'http://33.33.33.66:5000';
+    // var endpoint = 'http://127.0.0.1:5000';
 
     var colors = [
        '#377eb8',
@@ -571,12 +571,13 @@ var map;
     function print(e){
         e.preventDefault();
         if (typeof meta_data.query !== 'undefined'){
-            var query = {'query': meta_data.query}
-            query['center'] = [map.getCenter().lng, map.getCenter().lat];
-            query['dimensions'] = [map.getSize().x, map.getSize().y];
+            var query = {'query': JSON.stringify(meta_data.query)}
+            query['center'] = [map.getCenter().lng, map.getCenter().lat].join(',');
+            query['dimensions'] = [map.getSize().x, map.getSize().y].join(',');
+            query['units'] = 'pixels';
             query['zoom'] = map.getZoom();
-            query = JSON.stringify(query);
-            window.location = endpoint + '/api/print/?query=' + query;
+            query = $.param(query);
+            window.location = endpoint + '/api/print/?' + query;
         } else {
             $('#report-modal').reveal()
         }
