@@ -577,7 +577,11 @@ var map;
             query['units'] = 'pixels';
             query['zoom'] = map.getZoom();
             query = $.param(query);
-            window.location = endpoint + '/api/print/?' + query;
+
+            $.post(endpoint + '/api/print/', query, function(resp){
+                window.location = endpoint + resp.download;
+            })
+
         } else {
             $('#report-modal').reveal()
         }
