@@ -20,7 +20,7 @@ var map;
     var end_date;
     var default_view = false;
     var cookiename = 'crimearound_us_v2'
-    var endpoint = 'http://api.crimearound.us';
+    var endpoint = 'https://api.crimearound.us';
     // var endpoint = 'http://127.0.0.1:5000';
 
     var colors = [
@@ -34,11 +34,17 @@ var map;
         return this._div;
     }
     meta.update = function(meta_data){
+        var $this_div = $(this._div)
         if(typeof meta_data !== 'undefined'){
-            var tpl = new EJS({url: 'js/views/metaTemplate.ejs?2'});
-            meta_data['start_date'] = start_date.format('M/D/YYYY');
-            meta_data['end_date'] = end_date.format('M/D/YYYY');
-            $(this._div).html(tpl.render(meta_data));
+            $.when($.get('js/views/metaTemplate.ejs?2')).then(
+                function(template){
+                    var tpl = new EJS({text: template});
+                    meta_data['start_date'] = start_date.format('M/D/YYYY');
+                    meta_data['end_date'] = end_date.format('M/D/YYYY');
+                    $this_div.html(tpl.render(meta_data));
+                    $this_div.html()
+                }
+            )
         } else {
             $(this._div).empty();
             meta.removeFrom(map);
@@ -545,17 +551,20 @@ var map;
     }
 
     function bind_popup(feature, layer){
-        var crime_template = new EJS({url: 'js/views/crimeTemplate.ejs?v=2'});
-        var props = feature.properties;
-        var pop_content = crime_template.render(props);
-
-        var hoverText = feature.properties['primary_type'] + " - " + feature.properties['description'] + "\
-                        <br />" + moment(feature.properties['date']).format('MMM D, YYYY h:mma');
-        layer.bindLabel(hoverText);
-        layer.bindPopup(pop_content, {
-            closeButton: true,
-            minWidth: 320
-        })
+        $.when($.get('js/views/crimeTemplate.ejs')).then(
+            function(template){
+                var crime_template = new EJS({text: template});
+                var props = feature.properties;
+                var pop_content = crime_template.render(props);
+                var hoverText = feature.properties['primary_type'] + " - " + feature.properties['description'] + "\
+                                <br />" + moment(feature.properties['date']).format('MMM D, YYYY h:mma');
+                layer.bindLabel(hoverText);
+                layer.bindPopup(pop_content, {
+                    closeButton: true,
+                    minWidth: 320
+                })
+            }
+        )
     }
 
     function get_report(e){
